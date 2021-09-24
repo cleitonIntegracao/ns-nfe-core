@@ -6,6 +6,5 @@ using System.Threading.Tasks;
 
 public class configParceiro
 {
-    public static string CNPJ = "";
-    public static string token = "";
+    public static string token = "ADQWREQW561D32AWS1D6";
 }

@@ -8,5 +8,6 @@ namespace ns_nfe_core.src.commons
 {
     class util
     {
+
     }
 }

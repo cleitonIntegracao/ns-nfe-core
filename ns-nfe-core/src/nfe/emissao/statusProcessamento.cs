@@ -8,15 +8,15 @@ using Newtonsoft.Json;
 
 namespace ns_nfe_core.src.emissao
 {
-    public class statusProcessamento
+    public class StatusProcessamento
     {
-        public class body
+        public class Body
         {
             public string CNPJ { get; set; }
             public string nsNRec { get; set; }
         };
 
-        public class response
+        public class Response
         {
             public string status { get; set; }
             public string motivo { get; set; }
@@ -30,10 +30,12 @@ namespace ns_nfe_core.src.emissao
 
         }
 
-        public static async Task<response> sendPostRequest(body requestBody)
+        public static async Task<Response> sendPostRequest(Body requestBody)
         {
             string url = "https://nfe.ns.eti.br/nfe/issue/status";
-            var responseAPI = JsonConvert.DeserializeObject<response>(await nsAPI.postRequest(url, JsonConvert.SerializeObject(requestBody)));
+
+            var responseAPI = JsonConvert.DeserializeObject<Response>(await nsAPI.postRequest(url, JsonConvert.SerializeObject(requestBody)));
+            
             return responseAPI;
         }
     }

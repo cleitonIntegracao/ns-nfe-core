@@ -13,26 +13,25 @@ namespace ns_nfe_core.src.commons
     {
         public static async Task<string> postRequest(string url, string body, string tpConteudo = "json") 
         {
-            string responseAPI = "";
-
+            string responseAPI;
             var apiClient = new HttpClient();
 
-            StringContent requestBody = new StringContent(body,Encoding.UTF8, "application/"+tpConteudo);
+            StringContent requestBody = new StringContent(body, Encoding.UTF8, "application/" + tpConteudo);
 
             apiClient.DefaultRequestHeaders.Add("X-AUTH-TOKEN", configParceiro.token);
 
             try
             {
                 var getResponse = await apiClient.PostAsync(url, requestBody);
-                responseAPI = await getResponse.Content.ReadAsStringAsync();
+                return responseAPI = await getResponse.Content.ReadAsStringAsync();
             }
 
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
+                return ex.Message;
             }
 
-            return responseAPI;
         }
     }
 

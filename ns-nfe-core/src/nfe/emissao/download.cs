@@ -8,17 +8,16 @@ using Newtonsoft.Json;
 
 namespace ns_nfe_core.src.emissao
 {
-    public class download
+    public class Download
     {
-
-        public class body
+        public class Body
         {
             public string chNFe { get; set; }
             public string tpAmb { get; set; }
             public string tpDown { get; set; }
         };
 
-        public class response
+        public class Response
         {
             public string status { get; set; }
             public string motivo { get; set; }
@@ -30,10 +29,10 @@ namespace ns_nfe_core.src.emissao
 
         }
 
-        public static async Task<response> sendPostRequest(body requestBody) 
+        public static async Task<Response> sendPostRequest(Body requestBody) 
         {
             string url = "https://nfe.ns.eti.br/nfe/get";
-            var responseAPI = JsonConvert.DeserializeObject<response>(await nsAPI.postRequest(url, JsonConvert.SerializeObject(requestBody)));
+            var responseAPI = JsonConvert.DeserializeObject<Response>(await nsAPI.postRequest(url, JsonConvert.SerializeObject(requestBody)));
             return responseAPI;
         }
     }
