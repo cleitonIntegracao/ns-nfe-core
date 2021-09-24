@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ns-nfe-core", "ns-nfe-core\ns-nfe-core.csproj", "{CF3FCCFD-5CB7-4D60-8473-2E6E753E195F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CF3FCCFD-5CB7-4D60-8473-2E6E753E195F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF3FCCFD-5CB7-4D60-8473-2E6E753E195F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF3FCCFD-5CB7-4D60-8473-2E6E753E195F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF3FCCFD-5CB7-4D60-8473-2E6E753E195F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {54F1BED6-B26B-4031-86CE-5C0579701FC3}
+	EndGlobalSection
+EndGlobal

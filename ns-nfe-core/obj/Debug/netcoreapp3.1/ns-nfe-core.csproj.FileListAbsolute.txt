@@ -1,0 +1,4 @@
+C:\Projetos\ns-nfe-core\ns-nfe-core\obj\Debug\netcoreapp3.1\ns-nfe-core.csprojAssemblyReference.cache
+C:\Projetos\ns-nfe-core\ns-nfe-core\obj\Debug\netcoreapp3.1\ns-nfe-core.AssemblyInfoInputs.cache
+C:\Projetos\ns-nfe-core\ns-nfe-core\obj\Debug\netcoreapp3.1\ns-nfe-core.AssemblyInfo.cs
+C:\Projetos\ns-nfe-core\ns-nfe-core\obj\Debug\netcoreapp3.1\ns-nfe-core.csproj.CoreCompileInputs.cache
