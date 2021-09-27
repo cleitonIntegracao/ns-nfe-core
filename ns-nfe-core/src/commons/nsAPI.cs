@@ -2,8 +2,6 @@
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using System.Net.Http.Headers;
-using Newtonsoft.Json;
 
 
 namespace ns_nfe_core.src.commons
@@ -22,13 +20,20 @@ namespace ns_nfe_core.src.commons
 
             try
             {
+                util.gravarLinhaLog("[URL_ENVIO] " + url);
+                util.gravarLinhaLog("[DADOS_ENVIO] " + body);
+
                 var getResponse = await apiClient.PostAsync(url, requestBody);
-                return responseAPI = await getResponse.Content.ReadAsStringAsync();
+                responseAPI = await getResponse.Content.ReadAsStringAsync();
+
+                util.gravarLinhaLog("[DADOS_RESPOSTA] " + responseAPI);
+
+                return responseAPI;
             }
 
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
+                util.gravarLinhaLog(ex.Message);
                 return ex.Message;
             }
 

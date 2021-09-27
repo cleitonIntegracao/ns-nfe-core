@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>ns_nfe_core</RootNamespace>
     <StartupObject>ns_nfe_core.Program</StartupObject>
