@@ -33,10 +33,16 @@ namespace ns_nfe_core.src.emissao
         public static async Task<Response> sendPostRequest(Body requestBody)
         {
             string url = "https://nfe.ns.eti.br/nfe/issue/status";
-
-            var responseAPI = JsonConvert.DeserializeObject<Response>(await nsAPI.postRequest(url, JsonConvert.SerializeObject(requestBody)));
+            try {
+                var responseAPI = JsonConvert.DeserializeObject<Response>(await nsAPI.postRequest(url, JsonConvert.SerializeObject(requestBody)));
+                return responseAPI;
+            }
             
-            return responseAPI;
+            catch (Exception ex) 
+            { 
+                util.gravarLinhaLog("[ERRO_CONSULTA_STATUS]: " + ex.Message);
+                return null;
+            }
         }
     }
 }

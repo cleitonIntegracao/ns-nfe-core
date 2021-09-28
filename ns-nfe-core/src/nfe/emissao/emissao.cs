@@ -33,9 +33,17 @@ namespace ns_nfe_core.src.emissao
         {
             string url = "https://nfe.ns.eti.br/nfe/issue";
 
-            var responseAPI = JsonConvert.DeserializeObject<Response>(await nsAPI.postRequest(url, nfeToXML(requestBody), "xml"));
+            try { 
+                var responseAPI = JsonConvert.DeserializeObject<Response>(await nsAPI.postRequest(url, nfeToXML(requestBody), "xml")); 
+                return responseAPI;
+            }
 
-            return responseAPI;
+            catch (Exception ex) 
+            { 
+                util.gravarLinhaLog("[ERRO_EMISSAO]: " + ex.Message);
+                return null;
+            }
+            
         }
     }
 }

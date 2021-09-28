@@ -31,37 +31,46 @@ namespace ns_nfe_core.src.nfe.eventos
 
         public static async Task<Response> sendPostRequest(Body requestBody, string tpDown = "X")
         {
-            string url = "https://nfe.ns.eti.br/nfe/cce";
-
-            var responseAPI = JsonConvert.DeserializeObject<Response>(await nsAPI.postRequest(url, JsonConvert.SerializeObject(requestBody)));
-
-            if (responseAPI.status == "200")
+            try
             {
-                if (responseAPI.retEvento.cStat == "135")
+                string url = "https://nfe.ns.eti.br/nfe/cce";
+
+                var responseAPI = JsonConvert.DeserializeObject<Response>(await nsAPI.postRequest(url, JsonConvert.SerializeObject(requestBody)));
+
+                if (responseAPI.status == "200")
                 {
-                    DownloadEvento.Body downloadEventoBody = new DownloadEvento.Body
+                    if (responseAPI.retEvento.cStat == "135")
                     {
-                        chNFe = responseAPI.retEvento.chNFe,
-                        tpAmb = requestBody.tpAmb,
-                        tpDown = tpDown,
-                        tpEvento = "CCE",
-                        nSeqEvento = requestBody.nSeqEvento
-                    };
+                        DownloadEvento.Body downloadEventoBody = new DownloadEvento.Body
+                        {
+                            chNFe = responseAPI.retEvento.chNFe,
+                            tpAmb = requestBody.tpAmb,
+                            tpDown = tpDown,
+                            tpEvento = "CCE",
+                            nSeqEvento = requestBody.nSeqEvento
+                        };
 
-                    try
-                    {
-                        var retornoDownloadEvento = await DownloadEvento.sendPostRequest(downloadEventoBody, @"./NFe/Eventos/");
+                        try
+                        {
+                            var retornoDownloadEvento = await DownloadEvento.sendPostRequest(downloadEventoBody, @"./NFe/Eventos/");
+                        }
+
+                        catch (Exception ex)
+                        {
+                            util.gravarLinhaLog("[ERRO_DOWNLOAD_CCE]: " + ex);
+                        }
+
                     }
-
-                    catch (Exception ex)
-                    {
-                        util.gravarLinhaLog("[ERRO]: " + ex);
-                    }
-
                 }
+
+                return responseAPI;
             }
 
-            return responseAPI;
+            catch (Exception ex)
+            {
+                util.gravarLinhaLog("[ERRO_CORRIGIR_NFE]: " + ex.Message);
+                return null;
+            }
         }
     }
 }

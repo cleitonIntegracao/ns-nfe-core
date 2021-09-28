@@ -31,37 +31,46 @@ namespace ns_nfe_core.src.nfe.eventos
 
         public static async Task<Response> sendPostRequest(Body requestBody, string tpDown = "X")
         {
-            string url = "https://nfe.ns.eti.br/nfe/cancel";
-            
-            var responseAPI = JsonConvert.DeserializeObject<Response>(await nsAPI.postRequest(url, JsonConvert.SerializeObject(requestBody)));
-
-            if (responseAPI.status == "200")
+            try
             {
-                if (responseAPI.retEvento.cStat == "135")
+                string url = "https://nfe.ns.eti.br/nfe/cancel";
+
+                var responseAPI = JsonConvert.DeserializeObject<Response>(await nsAPI.postRequest(url, JsonConvert.SerializeObject(requestBody)));
+
+                if (responseAPI.status == "200")
                 {
-                    DownloadEvento.Body downloadEventoBody = new DownloadEvento.Body
+                    if (responseAPI.retEvento.cStat == "135")
                     {
-                        chNFe = responseAPI.retEvento.chNFe,
-                        tpAmb = requestBody.tpAmb,
-                        tpDown = tpDown,
-                        tpEvento = "CANC",
-                        nSeqEvento = "1"
-                    };
+                        DownloadEvento.Body downloadEventoBody = new DownloadEvento.Body
+                        {
+                            chNFe = responseAPI.retEvento.chNFe,
+                            tpAmb = requestBody.tpAmb,
+                            tpDown = tpDown,
+                            tpEvento = "CANC",
+                            nSeqEvento = "1"
+                        };
 
-                    try 
-                    { 
-                        var retornoDownloadEvento = await DownloadEvento.sendPostRequest(downloadEventoBody, @"./NFe/Eventos/"); 
-                    }
+                        try
+                        {
+                            var retornoDownloadEvento = await DownloadEvento.sendPostRequest(downloadEventoBody, @"./NFe/Eventos/");
+                        }
 
-                    catch (Exception ex)
-                    {
-                        util.gravarLinhaLog("[ERRO]: " + ex);
+                        catch (Exception ex)
+                        {
+                            util.gravarLinhaLog("[ERRO_DOWNLOAD_CANCELAMENTO]: " + ex);
+                        }
+
                     }
-                    
                 }
+
+                return responseAPI;
             }
 
-            return responseAPI;
+            catch (Exception ex)
+            {
+                util.gravarLinhaLog("[ERRO_CANCELAR_NFE]: " + ex.Message);
+                return null;
+            }
         }
     }
 }

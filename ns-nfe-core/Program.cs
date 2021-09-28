@@ -11,13 +11,13 @@ namespace ns_nfe_core
     {
         static async Task Main(string[] args)
         {
-            await corrigirNFe();
+            await emitirNFe();
         }
 
         static async Task emitirNFe()
         {
             var NFeXML = layoutNFe.gerarNFeXML();
-            var retorno = await EmissaoSincrona.sendPostRequest(NFeXML, "X");
+            var retorno = await EmissaoSincrona.sendPostRequest(NFeXML, "XP", true);
             Console.WriteLine(JsonConvert.SerializeObject(retorno));
         }
 

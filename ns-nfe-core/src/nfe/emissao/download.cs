@@ -31,25 +31,36 @@ namespace ns_nfe_core.src.emissao
 
         public static async Task<Response> sendPostRequest(Body requestBody, string caminhoSalvar) 
         {
-            string url = "https://nfe.ns.eti.br/nfe/get";
-            var responseAPI = JsonConvert.DeserializeObject<Response>(await nsAPI.postRequest(url, JsonConvert.SerializeObject(requestBody)));
-            
-            if (responseAPI.nfeProc != null)
+            try
             {
-                util.salvarArquivo(caminhoSalvar, responseAPI.chNFe, "-nfeProc.json", JsonConvert.SerializeObject(responseAPI.nfeProc));
+                string url = "https://nfe.ns.eti.br/nfe/get";
+
+                var responseAPI = JsonConvert.DeserializeObject<Response>(await nsAPI.postRequest(url, JsonConvert.SerializeObject(requestBody)));
+
+                if (responseAPI.nfeProc != null)
+                {
+                    util.salvarArquivo(caminhoSalvar, responseAPI.chNFe, "-nfeProc.json", JsonConvert.SerializeObject(responseAPI.nfeProc));
+                }
+
+                if (responseAPI.pdf != null)
+                {
+                    util.salvarArquivo(caminhoSalvar, responseAPI.chNFe, "-nfeProc.pdf", responseAPI.pdf);
+                    
+                }
+
+                if (responseAPI.xml != null)
+                {
+                    util.salvarArquivo(caminhoSalvar, responseAPI.chNFe, "-nfeProc.xml", responseAPI.xml);
+                }
+
+                return responseAPI;
             }
 
-            if (responseAPI.pdf != null)
+            catch (Exception ex)
             {
-                util.salvarArquivo(caminhoSalvar, responseAPI.chNFe, "-nfeProc.pdf", responseAPI.pdf);
+                util.gravarLinhaLog("[ERRO_DOWNLOAD]: " + ex.Message);
+                return null;
             }
-
-            if (responseAPI.xml != null)
-            {
-                util.salvarArquivo(caminhoSalvar, responseAPI.chNFe, "-nfeProc.xml", responseAPI.xml);
-            }
-
-            return responseAPI;
         }
     }
 }

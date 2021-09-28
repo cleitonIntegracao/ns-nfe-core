@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 
 namespace ns_nfe_core.src.commons
@@ -22,7 +23,7 @@ namespace ns_nfe_core.src.commons
             
             catch (Exception ex)
             {
-                gravarLinhaLog("[ERRO]: " + ex.Message);
+                gravarLinhaLog("[ERRO_GRAVAR_LINHA_LOG]: " + ex.Message);
             }
 
         }
@@ -39,7 +40,7 @@ namespace ns_nfe_core.src.commons
 
             catch(Exception ex)
             {
-                gravarLinhaLog("[ERRO]: " + ex.Message);
+                gravarLinhaLog("[ERRO_SALVAR_ARQUIVO]: " + ex.Message);
             }
 
             try 
@@ -59,7 +60,7 @@ namespace ns_nfe_core.src.commons
 
                         catch (Exception ex)
                         {
-                            gravarLinhaLog("[ERRO]: " + ex.Message);
+                            gravarLinhaLog("[ERRO_SALVAR_XML]: " + ex.Message);
                         }
 
                         break;
@@ -76,7 +77,7 @@ namespace ns_nfe_core.src.commons
 
                         catch(Exception ex)
                         {
-                            gravarLinhaLog("[ERRO]: " + ex.Message);
+                            gravarLinhaLog("[ERRO_SALVAR_JSON]: " + ex.Message);
                         }
 
                         break;
@@ -97,7 +98,7 @@ namespace ns_nfe_core.src.commons
 
                         catch (Exception ex)
                         {
-                            gravarLinhaLog("[ERRO]: " + ex.Message);
+                            gravarLinhaLog("[ERRO_SALVAR_PDF]: " + ex.Message);
                         }
 
                         break;
@@ -106,7 +107,7 @@ namespace ns_nfe_core.src.commons
 
             catch (Exception ex) 
             {
-                gravarLinhaLog("[ERRO]: " + ex.Message);
+                gravarLinhaLog("[ERRO_SALVAR_ARQUIVOS]: " + ex.Message);
             }
         }
 
@@ -136,5 +137,12 @@ namespace ns_nfe_core.src.commons
             return hashEntrega;
         }
 
+        public static void exibirPDF(string arquivo)
+        {
+            try { 
+                Process.Start(new ProcessStartInfo(arquivo) { UseShellExecute = true }); 
+            }
+            catch (Exception ex){ util.gravarLinhaLog("[ERRO_EXIBIR_PDF]: " + ex.Message + " Arquivo: " + arquivo); }
+        }
     }
 }

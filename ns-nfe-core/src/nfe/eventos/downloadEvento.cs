@@ -33,39 +33,48 @@ namespace ns_nfe_core.src.eventos
 
         public static async Task<Response> sendPostRequest(Body requestBody, string caminhoSalvar = @"./NFe/Eventos/")
         {
-            string url = "https://nfe.ns.eti.br/nfe/get/event";
-
-            var responseAPI = JsonConvert.DeserializeObject<Response>(await nsAPI.postRequest(url, JsonConvert.SerializeObject(requestBody)));
-
-            string idEvento = "";
-
-            switch (requestBody.tpEvento)
+            try
             {
-                case "CANC":
-                    idEvento = "110111";
-                    break;
+                string url = "https://nfe.ns.eti.br/nfe/get/event";
 
-                case "CCE":
-                    idEvento = "110110";
-                    break;
-                }              
+                var responseAPI = JsonConvert.DeserializeObject<Response>(await nsAPI.postRequest(url, JsonConvert.SerializeObject(requestBody)));
 
-            if (responseAPI.json != null)
-            {
-                util.salvarArquivo(caminhoSalvar, idEvento + responseAPI.retEvento.chNFe + requestBody.nSeqEvento, "-procEven.json", responseAPI.json);
+                string idEvento = "";
+
+                switch (requestBody.tpEvento)
+                {
+                    case "CANC":
+                        idEvento = "110111";
+                        break;
+
+                    case "CCE":
+                        idEvento = "110110";
+                        break;
+                }
+
+                if (responseAPI.json != null)
+                {
+                    util.salvarArquivo(caminhoSalvar, idEvento + responseAPI.retEvento.chNFe + requestBody.nSeqEvento, "-procEven.json", responseAPI.json);
+                }
+
+                if (responseAPI.pdf != null)
+                {
+                    util.salvarArquivo(caminhoSalvar, idEvento + responseAPI.retEvento.chNFe + requestBody.nSeqEvento, "-procEven.pdf", responseAPI.pdf);
+                }
+
+                if (responseAPI.xml != null)
+                {
+                    util.salvarArquivo(caminhoSalvar, idEvento + responseAPI.retEvento.chNFe + requestBody.nSeqEvento, "-procEven.xml", responseAPI.xml);
+                }
+
+                return responseAPI;
             }
 
-            if (responseAPI.pdf != null)
+            catch (Exception ex)
             {
-                util.salvarArquivo(caminhoSalvar, idEvento + responseAPI.retEvento.chNFe + requestBody.nSeqEvento, "-procEven.pdf", responseAPI.pdf);
+                util.gravarLinhaLog("[ERRO_DOWNLOAD_EVENTO]: " + ex.Message);
+                return null;
             }
-
-            if (responseAPI.xml != null)
-            {
-                util.salvarArquivo(caminhoSalvar, idEvento + responseAPI.retEvento.chNFe + requestBody.nSeqEvento, "-procEven.xml", responseAPI.xml);
-            }
-
-            return responseAPI;
         }
     }
 }

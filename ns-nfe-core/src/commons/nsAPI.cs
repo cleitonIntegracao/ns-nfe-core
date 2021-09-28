@@ -33,7 +33,7 @@ namespace ns_nfe_core.src.commons
 
             catch (Exception ex)
             {
-                util.gravarLinhaLog(ex.Message);
+                util.gravarLinhaLog("[ERRO_ENVIO_DADOS_API]: " + ex.Message);
                 return ex.Message;
             }
 
