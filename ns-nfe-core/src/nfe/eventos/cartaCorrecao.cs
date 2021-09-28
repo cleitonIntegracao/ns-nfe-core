@@ -25,11 +25,11 @@ namespace ns_nfe_core.src.nfe.eventos
             public string status { get; set; }
             public string motivo { get; set; }
             public dynamic retEvento { get; set; }
-            public string[] erro { get; set; }
+            public string erro { get; set; }
 
         }
 
-        public static async Task<Response> sendPostRequest(Body requestBody, string tpDown)
+        public static async Task<Response> sendPostRequest(Body requestBody, string tpDown = "X")
         {
             string url = "https://nfe.ns.eti.br/nfe/cce";
 
@@ -45,7 +45,7 @@ namespace ns_nfe_core.src.nfe.eventos
                         tpAmb = requestBody.tpAmb,
                         tpDown = tpDown,
                         tpEvento = "CCE",
-                        nSeqEvento = "1"
+                        nSeqEvento = requestBody.nSeqEvento
                     };
 
                     try

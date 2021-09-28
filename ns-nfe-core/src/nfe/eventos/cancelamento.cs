@@ -25,14 +25,14 @@ namespace ns_nfe_core.src.nfe.eventos
             public string status { get; set; }
             public string motivo { get; set; }
             public dynamic retEvento { get; set; }
-            public string[] erro { get; set; }
+            public string erro { get; set; }
 
         }
 
-        public static async Task<Response> sendPostRequest(Body requestBody, string tpDown)
+        public static async Task<Response> sendPostRequest(Body requestBody, string tpDown = "X")
         {
             string url = "https://nfe.ns.eti.br/nfe/cancel";
-
+            
             var responseAPI = JsonConvert.DeserializeObject<Response>(await nsAPI.postRequest(url, JsonConvert.SerializeObject(requestBody)));
 
             if (responseAPI.status == "200")

@@ -24,7 +24,7 @@ namespace ns_nfe_core.src.eventos
             public string status { get; set; }
             public string motivo { get; set; }
             public dynamic retEvento { get; set; }
-            public string[] erros { get; set; }
+            public string erros { get; set; }
             public string xml { get; set; }
             public string pdf { get; set; }
             public string json { get; set; }
@@ -33,7 +33,7 @@ namespace ns_nfe_core.src.eventos
 
         public static async Task<Response> sendPostRequest(Body requestBody, string caminhoSalvar = @"./NFe/Eventos/")
         {
-            string url = "https://nfe.ns.eti.br/nfe/get";
+            string url = "https://nfe.ns.eti.br/nfe/get/event";
 
             var responseAPI = JsonConvert.DeserializeObject<Response>(await nsAPI.postRequest(url, JsonConvert.SerializeObject(requestBody)));
 

@@ -23,7 +23,7 @@ namespace ns_nfe_core
                         natOp = "VENDA A PRAZO - SEM VALOR FISCAL",
                         mod = TMod.Item55,
                         serie = "0",
-                        nNF = "22467",
+                        nNF = "22474",
                         dhEmi = DateTime.Now.ToString("s") + "-03:00",
                         tpNF = TNFeInfNFeIdeTpNF.Item1,
                         idDest = TNFeInfNFeIdeIdDest.Item1,

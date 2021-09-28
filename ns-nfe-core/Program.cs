@@ -11,7 +11,7 @@ namespace ns_nfe_core
     {
         static async Task Main(string[] args)
         {
-            await cancelarNFe();
+            await corrigirNFe();
         }
 
         static async Task emitirNFe()
@@ -23,16 +23,30 @@ namespace ns_nfe_core
 
         static async Task cancelarNFe()
         {
-            var requisicaoCancelamento = new cancelamento.Body
+            var requisicaoCancelamento = new Cancelamento.Body
             {
-                chNFe = "43210907364617000135550000000224671279716655",
+                chNFe = "43210907364617000135550000000224731295459987",
                 dhEvento = DateTime.Now.ToString("s") + "-03:00",
-                nProt = "143210000852376",
+                nProt = "143210000854126",
                 tpAmb = "2",
                 xJust = "CANCELAMENTO REALIZADO PARA FINS DE TESTE DE INTEGRACAO DE EXEMPLO NFE-CORE"
             };
 
-            var retorno = await cancelamento.sendPostRequest(requisicaoCancelamento);
+            var retorno = await Cancelamento.sendPostRequest(requisicaoCancelamento);
+            Console.WriteLine(retorno);
+        }
+        static async Task corrigirNFe()
+        {
+            var requisicaoCorrecao = new CartaCorrecao.Body
+            {
+                chNFe = "43210907364617000135550000000224741625597056",
+                dhEvento = DateTime.Now.ToString("s") + "-03:00",
+                nSeqEvento = "1",
+                tpAmb = "2",
+                xCorrecao = "CANCELAMENTO REALIZADO PARA FINS DE TESTE DE INTEGRACAO DE EXEMPLO NFE-CORE"
+            };
+
+            var retorno = await CartaCorrecao.sendPostRequest(requisicaoCorrecao, "XP");
             Console.WriteLine(retorno);
         }
     }
