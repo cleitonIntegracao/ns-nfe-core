@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ns_nfe_core.src.commons
 {
@@ -26,14 +22,14 @@ namespace ns_nfe_core.src.commons
             
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                gravarLinhaLog("[ERRO]: " + ex.Message);
             }
 
         }
 
         public static void salvarArquivo(string caminho, string nomeArquivo, string extensao, string conteudo) 
         {
-            string caminhoSalvar = Path.Combine(caminho, nomeArquivo + extensao);
+            //string caminhoSalvar = Path.Combine(caminho, nomeArquivo + extensao);
 
             try
             {
@@ -43,36 +39,102 @@ namespace ns_nfe_core.src.commons
 
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                gravarLinhaLog("[ERRO]: " + ex.Message);
             }
 
-            try { } catch (Exception ex) { }
+            try 
+            { 
+                switch (extensao)
+                {
+                    case var target when extensao.Contains(".xml"):
+
+                        try
+                        {
+                            conteudo = conteudo.Replace(@"\""", "");
+                            using (StreamWriter outputFile = new StreamWriter(caminho + nomeArquivo + extensao))
+                            {
+                                outputFile.WriteLine(conteudo);
+                            };
+                        }
+
+                        catch (Exception ex)
+                        {
+                            gravarLinhaLog("[ERRO]: " + ex.Message);
+                        }
+
+                        break;
+
+                    case var target when extensao.Contains(".json"):
+
+                        try
+                        {
+                            using (StreamWriter outputFile = new StreamWriter(caminho + nomeArquivo + extensao))
+                            {
+                                outputFile.WriteLine(conteudo);
+                            };
+                        }
+
+                        catch(Exception ex)
+                        {
+                            gravarLinhaLog("[ERRO]: " + ex.Message);
+                        }
+
+                        break;
+
+                    case var target when extensao.Contains(".pdf"):
+
+                        try
+                        {
+                            caminho = Path.Combine(caminho, nomeArquivo + extensao);
+                            byte[] bytes = Convert.FromBase64String(conteudo);
+                            if (File.Exists(caminho))
+                                File.Delete(caminho);
+                            FileStream stream = new FileStream(caminho, FileMode.CreateNew);
+                            BinaryWriter writer = new BinaryWriter(stream);
+                            writer.Write(bytes, 0, bytes.Length);
+                            writer.Close();
+                        }
+
+                        catch (Exception ex)
+                        {
+                            gravarLinhaLog("[ERRO]: " + ex.Message);
+                        }
+
+                        break;
+                }
+            } 
+
+            catch (Exception ex) 
+            {
+                gravarLinhaLog("[ERRO]: " + ex.Message);
+            }
         }
 
-        public static void salvarXML(string conteudo, string caminho, string nome, string extensao, string tpEvento = "", string nSeqEvento = "")
+        public static string gerarHashSHA1(string chave, string caminhoImagem)
         {
-            string localParaSalvar = caminho + tpEvento + nome + nSeqEvento + extensao;
-            string ConteudoSalvar = "";
-            ConteudoSalvar = conteudo.Replace(@"\""", "");
-            File.WriteAllText(localParaSalvar, ConteudoSalvar);
+            byte[] imageArray = File.ReadAllBytes(caminhoImagem);
+
+            string base64ImagemEntrega = Convert.ToBase64String(imageArray);
+
+            string hash = chave + base64ImagemEntrega;
+
+            string hashEntrega = "";
+
+            try
+            {
+                byte[] data = System.Text.Encoding.UTF8.GetBytes(hash);
+                System.Security.Cryptography.SHA1 sha = new System.Security.Cryptography.SHA1Managed();
+                byte[] res = sha.ComputeHash(data);
+                hashEntrega = Convert.ToBase64String(res);
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+
+            return hashEntrega;
         }
 
-        public static void salvarJSON(string conteudo, string caminho, string nome, string extensao, string tpEvento = "", string nSeqEvento = "")
-        {
-            string localParaSalvar = caminho + tpEvento + nome + nSeqEvento + extensao;
-            File.WriteAllText(localParaSalvar, conteudo);
-        }
-
-        public static void salvarPDF(string conteudo, string caminho, string nome, string extensao, string tpEvento = "", string nSeqEvento = "")
-        {
-            string localParaSalvar = caminho + tpEvento + nome + nSeqEvento + extensao;
-            byte[] bytes = Convert.FromBase64String(conteudo);
-            if (File.Exists(localParaSalvar))
-                File.Delete(localParaSalvar);
-            FileStream stream = new FileStream(localParaSalvar, FileMode.CreateNew);
-            BinaryWriter writer = new BinaryWriter(stream);
-            writer.Write(bytes, 0, bytes.Length);
-            writer.Close();
-        }
     }
 }

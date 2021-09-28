@@ -29,7 +29,7 @@ namespace ns_nfe_core.src.emissao
 
         }
 
-        public static async Task<ResponseSincrono> sendPostRequest(TNFe requestBody)
+        public static async Task<ResponseSincrono> sendPostRequest(TNFe requestBody, string tpDown = "X", string caminhoSalvar = @"./NFe/Documentos/")
         {
             var responseSincrono = new ResponseSincrono();
 
@@ -55,16 +55,16 @@ namespace ns_nfe_core.src.emissao
             {
                 chNFe = statusResponse.chNFe,
                 tpAmb = requestBody.infNFe.ide.tpAmb.ToString(),
-                tpDown = "XP"
+                tpDown = tpDown
             };
 
-            var responseDownload = await Download.sendPostRequest(downloadBody);
+            var responseDownload = await Download.sendPostRequest(downloadBody, caminhoSalvar);
 
             responseSincrono.statusDownload = responseDownload.status;
             responseSincrono.chNFe = responseDownload.chNFe;
             responseSincrono.xml = responseDownload.xml;
             responseSincrono.pdf = responseDownload.pdf;
-            responseSincrono.json = responseDownload.json;
+            responseSincrono.json = JsonConvert.SerializeObject(responseDownload.nfeProc);
 
             return responseSincrono;
         }

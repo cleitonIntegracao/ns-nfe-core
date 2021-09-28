@@ -11,7 +11,7 @@ namespace ns_nfe_core
         static async Task Main(string[] args)
         {
             var NFeXML = layoutNFe.gerarNFeXML();
-            var retorno = await EmissaoSincrona.sendPostRequest(NFeXML);
+            var retorno = await EmissaoSincrona.sendPostRequest(NFeXML, "X");
             Console.WriteLine(JsonConvert.SerializeObject(retorno));
             
         }
