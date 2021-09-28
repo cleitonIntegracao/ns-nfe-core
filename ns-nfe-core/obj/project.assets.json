@@ -53,11 +53,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Projetos\\ns-nfe-core\\ns-nfe-core\\ns-nfe-core.csproj",
+      "projectUniqueName": "C:\\Users\\fernando.konflanz\\GitHub\\ns-nfe-core\\ns-nfe-core\\ns-nfe-core.csproj",
       "projectName": "ns-nfe-core",
-      "projectPath": "C:\\Projetos\\ns-nfe-core\\ns-nfe-core\\ns-nfe-core.csproj",
+      "projectPath": "C:\\Users\\fernando.konflanz\\GitHub\\ns-nfe-core\\ns-nfe-core\\ns-nfe-core.csproj",
       "packagesPath": "C:\\Users\\fernando.konflanz\\.nuget\\packages\\",
-      "outputPath": "C:\\Projetos\\ns-nfe-core\\ns-nfe-core\\obj\\",
+      "outputPath": "C:\\Users\\fernando.konflanz\\GitHub\\ns-nfe-core\\ns-nfe-core\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\fernando.konflanz\\AppData\\Roaming\\NuGet\\NuGet.Config",

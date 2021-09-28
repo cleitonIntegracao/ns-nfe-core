@@ -66,7 +66,6 @@ namespace ns_nfe_core
                         Item = "07364617000135",
                         indIEDest = TNFeInfNFeDestIndIEDest.Item1,
                         IE = "0170108708",
-                        email = "fernando.konflanz@nstecnologia.com.br",
                         enderDest = new TEndereco
                         {
                             xLgr = "AV ANTONIO DURO",
