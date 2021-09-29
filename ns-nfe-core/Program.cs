@@ -13,7 +13,7 @@ namespace ns_nfe_core
     {
         static async Task Main(string[] args)
         {
-            await emitirNFe();
+
         }
 
         static async Task emitirNFe() // Emitir NFe
@@ -39,14 +39,32 @@ namespace ns_nfe_core
         {
             var requisicaoCorrecao = new CartaCorrecao.Body
             {
-                chNFe = "",
+                chNFe = "43210907364617000135550000000224741625597056",
                 dhEvento = DateTime.Now.ToString("s") + "-03:00",
-                nSeqEvento = "3",
+                nSeqEvento = "5",
                 tpAmb = "2",
                 xCorrecao = "CORRECAO REALIZADO PARA FINS DE TESTE DE INTEGRACAO DE EXEMPLO NFE-CORE"
             };
 
             var retorno = await CartaCorrecao.sendPostRequest(requisicaoCorrecao, "XP", @"NFe/Eventos/",true);
+        }
+
+        static async Task inutilizarNFe()
+        {
+            var requisicaoInutilizar = new Inutilizacao.Body
+            {
+                ano = "21",
+                tpAmb = "2",
+                CNPJ = "07364617000135",
+                cUF = "43",
+                nNFIni = "22517",
+                nNFFin = "22517",
+                serie = "0",
+                xJust = "NUMERACAO INUTILIZADA PARA TESTES DE INTEGRACAO ESTRUTURA XSD - CORE"
+            };
+
+            var retorno = await Inutilizacao.sendPostRequest(requisicaoInutilizar, "XP", @"NFe/Eventos/", true);
+            Console.WriteLine();
         }
     }
 }
