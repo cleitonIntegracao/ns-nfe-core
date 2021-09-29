@@ -29,7 +29,7 @@ namespace ns_nfe_core.src.emissao
  
         }
 
-        public static async Task<Response> sendPostRequest(Body requestBody, string caminhoSalvar) 
+        public static async Task<Response> sendPostRequest(Body requestBody, string caminhoSalvar = @"NFe/Documentos/", bool exibeNaTela = false) 
         {
             try
             {
@@ -45,7 +45,11 @@ namespace ns_nfe_core.src.emissao
                 if (responseAPI.pdf != null)
                 {
                     util.salvarArquivo(caminhoSalvar, responseAPI.chNFe, "-nfeProc.pdf", responseAPI.pdf);
-                    
+
+                    if (exibeNaTela)
+                    {
+                        util.exibirPDF(caminhoSalvar, responseAPI.chNFe, "-nfeProc.pdf");
+                    };
                 }
 
                 if (responseAPI.xml != null)

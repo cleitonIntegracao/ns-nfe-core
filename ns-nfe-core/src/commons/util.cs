@@ -137,12 +137,17 @@ namespace ns_nfe_core.src.commons
             return hashEntrega;
         }
 
-        public static void exibirPDF(string arquivo)
+        public static void exibirPDF(string caminhoSalvar, string chave, string extensao)
         {
-            try { 
+            string arquivo = caminhoSalvar.Replace("/", @"\") + chave + extensao;
+            
+            try {
                 Process.Start(new ProcessStartInfo(arquivo) { UseShellExecute = true }); 
             }
-            catch (Exception ex){ util.gravarLinhaLog("[ERRO_EXIBIR_PDF]: " + ex.Message + " Arquivo: " + arquivo); }
+            catch (Exception ex)
+            { 
+                gravarLinhaLog("[ERRO_EXIBIR_PDF]: " + ex.Message + " Arquivo: " + arquivo); 
+            }
         }
     }
 }

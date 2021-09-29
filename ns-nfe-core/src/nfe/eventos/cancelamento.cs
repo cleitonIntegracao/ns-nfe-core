@@ -29,7 +29,7 @@ namespace ns_nfe_core.src.nfe.eventos
 
         }
 
-        public static async Task<Response> sendPostRequest(Body requestBody, string tpDown = "X")
+        public static async Task<Response> sendPostRequest(Body requestBody, string tpDown = "X", string caminhoSalvar = @"NFe/Eventos/", bool exibeNaTela = false)
         {
             try
             {
@@ -52,7 +52,7 @@ namespace ns_nfe_core.src.nfe.eventos
 
                         try
                         {
-                            var retornoDownloadEvento = await DownloadEvento.sendPostRequest(downloadEventoBody, @"./NFe/Eventos/");
+                            var retornoDownloadEvento = await DownloadEvento.sendPostRequest(downloadEventoBody, caminhoSalvar, exibeNaTela);
                         }
 
                         catch (Exception ex)

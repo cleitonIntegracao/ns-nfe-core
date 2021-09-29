@@ -30,7 +30,7 @@ namespace ns_nfe_core.src.emissao
 
         }
 
-        public static async Task<ResponseSincrono> sendPostRequest(TNFe requestBody, string tpDown = "X", bool exibeNaTela = false, string caminhoSalvar = @"./NFe/Documentos/")
+        public static async Task<ResponseSincrono> sendPostRequest(TNFe requestBody, string tpDown = "X", bool exibeNaTela = false, string caminhoSalvar = @"NFe/Documentos/")
         {
             var responseSincrono = new ResponseSincrono();
 
@@ -70,7 +70,7 @@ namespace ns_nfe_core.src.emissao
                             tpDown = tpDown
                         };
 
-                        var downloadResponse = await Download.sendPostRequest(downloadBody, caminhoSalvar);
+                        var downloadResponse = await Download.sendPostRequest(downloadBody, caminhoSalvar, exibeNaTela);
 
                         if (downloadResponse.status == "200")
                         {
@@ -79,8 +79,6 @@ namespace ns_nfe_core.src.emissao
                             responseSincrono.json = JsonConvert.SerializeObject(downloadResponse.nfeProc);
                             responseSincrono.pdf = downloadResponse.pdf;
                         }
-
-                        if (exibeNaTela) { util.exibirPDF(Path.Combine("./"+ responseSincrono.chNFe + "-nfeProc.pdf")); };
                     }
                 }
             }

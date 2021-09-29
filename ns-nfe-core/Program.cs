@@ -5,49 +5,48 @@ using Newtonsoft.Json;
 using ns_nfe_core.src.commons;
 using ns_nfe_core.src.nfe.eventos;
 
+//EXEMPLOS DE USO DA BIBLIOTECA
+
 namespace ns_nfe_core
 {
-    class Program
+    class Program 
     {
         static async Task Main(string[] args)
         {
-            await emitirNFe();
+
         }
 
-        static async Task emitirNFe()
+        static async Task emitirNFe() // Emitir NFe
         {
             var NFeXML = layoutNFe.gerarNFeXML();
-            var retorno = await EmissaoSincrona.sendPostRequest(NFeXML, "XP", true);
-            Console.WriteLine(JsonConvert.SerializeObject(retorno));
+            var retorno = await EmissaoSincrona.sendPostRequest(NFeXML, "XP", true, @"NFe/Documentos/");
         }
 
-        static async Task cancelarNFe()
+        static async Task cancelarNFe() // Cancelar NFe
         {
             var requisicaoCancelamento = new Cancelamento.Body
             {
-                chNFe = "43210907364617000135550000000224731295459987",
+                chNFe = "43210907364617000135550000000224991428511697",
                 dhEvento = DateTime.Now.ToString("s") + "-03:00",
-                nProt = "143210000854126",
+                nProt = "143210000855283",
                 tpAmb = "2",
                 xJust = "CANCELAMENTO REALIZADO PARA FINS DE TESTE DE INTEGRACAO DE EXEMPLO NFE-CORE"
             };
 
-            var retorno = await Cancelamento.sendPostRequest(requisicaoCancelamento);
-            Console.WriteLine(retorno);
+            var retorno = await Cancelamento.sendPostRequest(requisicaoCancelamento,"XP", @"NFe/Eventos/",true);
         }
-        static async Task corrigirNFe()
+        static async Task corrigirNFe() // Corrigir NFe
         {
             var requisicaoCorrecao = new CartaCorrecao.Body
             {
                 chNFe = "43210907364617000135550000000224741625597056",
                 dhEvento = DateTime.Now.ToString("s") + "-03:00",
-                nSeqEvento = "1",
+                nSeqEvento = "3",
                 tpAmb = "2",
-                xCorrecao = "CANCELAMENTO REALIZADO PARA FINS DE TESTE DE INTEGRACAO DE EXEMPLO NFE-CORE"
+                xCorrecao = "CORRECAO REALIZADO PARA FINS DE TESTE DE INTEGRACAO DE EXEMPLO NFE-CORE"
             };
 
-            var retorno = await CartaCorrecao.sendPostRequest(requisicaoCorrecao, "XP");
-            Console.WriteLine(retorno);
+            var retorno = await CartaCorrecao.sendPostRequest(requisicaoCorrecao, "XP", @"NFe/Eventos/",true);
         }
     }
 }

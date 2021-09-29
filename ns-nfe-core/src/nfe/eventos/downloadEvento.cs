@@ -31,7 +31,7 @@ namespace ns_nfe_core.src.eventos
 
         }
 
-        public static async Task<Response> sendPostRequest(Body requestBody, string caminhoSalvar = @"./NFe/Eventos/")
+        public static async Task<Response> sendPostRequest(Body requestBody, string caminhoSalvar, bool exibeNaTela)
         {
             try
             {
@@ -60,6 +60,11 @@ namespace ns_nfe_core.src.eventos
                 if (responseAPI.pdf != null)
                 {
                     util.salvarArquivo(caminhoSalvar, idEvento + responseAPI.retEvento.chNFe + requestBody.nSeqEvento, "-procEven.pdf", responseAPI.pdf);
+                    
+                    if (exibeNaTela)
+                    {
+                        util.exibirPDF(caminhoSalvar, idEvento + responseAPI.retEvento.chNFe + requestBody.nSeqEvento, "-procEven.pdf"); 
+                    };
                 }
 
                 if (responseAPI.xml != null)
