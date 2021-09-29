@@ -16,10 +16,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="src\nfe\util\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using ns_nfe_core.src.commons;
 using ns_nfe_core.src.nfe.eventos;
+using ns_nfe_core.src.nfe.utilitarios;
 
 //EXEMPLOS DE USO DA BIBLIOTECA
 
@@ -13,7 +14,7 @@ namespace ns_nfe_core
     {
         static async Task Main(string[] args)
         {
-
+            await consultarCadastro();
         }
 
         static async Task emitirNFe() // Emitir NFe
@@ -64,6 +65,19 @@ namespace ns_nfe_core
             };
 
             var retorno = await Inutilizacao.sendPostRequest(requisicaoInutilizar, "XP", @"NFe/Eventos/", true);
+            Console.WriteLine();
+        }
+
+        static async Task consultarCadastro()
+        {
+            var requisicaoConsultaCadastro = new ConsultarCadastro.Body
+            {
+                CNPJCont = "07364617000135",
+                CNPJ = "07364617000135",
+                UF = "RS"
+            };
+
+            var retorno = await ConsultarCadastro.sendPostRequest(requisicaoConsultaCadastro);
             Console.WriteLine();
         }
     }
