@@ -26,9 +26,9 @@ namespace ns_nfe_core
         {
             var requisicaoCancelamento = new Cancelamento.Body
             {
-                chNFe = "43210907364617000135550000000224991428511697",
+                chNFe = "",
                 dhEvento = DateTime.Now.ToString("s") + "-03:00",
-                nProt = "143210000855283",
+                nProt = "",
                 tpAmb = "2",
                 xJust = "CANCELAMENTO REALIZADO PARA FINS DE TESTE DE INTEGRACAO DE EXEMPLO NFE-CORE"
             };
@@ -39,7 +39,7 @@ namespace ns_nfe_core
         {
             var requisicaoCorrecao = new CartaCorrecao.Body
             {
-                chNFe = "43210907364617000135550000000224741625597056",
+                chNFe = "",
                 dhEvento = DateTime.Now.ToString("s") + "-03:00",
                 nSeqEvento = "3",
                 tpAmb = "2",
