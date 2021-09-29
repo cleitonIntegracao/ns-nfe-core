@@ -17,7 +17,7 @@ namespace ns_nfe_core.src.commons
             {
                 using (StreamWriter outputFile = new StreamWriter(@".\logs\" + DateTime.UtcNow.ToString("MMddyyyy") + ".log", true))
                 {
-                    outputFile.WriteLine(DateTime.Now.ToShortDateString() + DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss:ffff") + " - " + registro);
+                    outputFile.WriteLine(DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss:ffff") + " - " + registro);
                 }
             } 
             

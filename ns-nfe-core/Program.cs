@@ -13,7 +13,7 @@ namespace ns_nfe_core
     {
         static async Task Main(string[] args)
         {
-
+            await emitirNFe();
         }
 
         static async Task emitirNFe() // Emitir NFe
