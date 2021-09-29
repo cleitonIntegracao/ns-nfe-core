@@ -5,6 +5,14 @@
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>ns_nfe_core</RootNamespace>
     <StartupObject>ns_nfe_core.Program</StartupObject>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Authors>Fernando Konflanz @ NS Tecnologia</Authors>
+    <Company>NS Tecnologia</Company>
+    <Description>Biblioteca para comunicação com a API de NFe da NS Tecnologia.</Description>
+    <Copyright>NS Tecnologia</Copyright>
+    <RepositoryUrl>https://github.com/konflanzzz/ns-nfe-core</RepositoryUrl>
+    <RepositoryType>GitHub</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>

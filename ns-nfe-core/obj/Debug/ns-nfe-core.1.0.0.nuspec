@@ -3,9 +3,11 @@
   <metadata>
     <id>ns-nfe-core</id>
     <version>1.0.0</version>
-    <authors>ns-nfe-core</authors>
+    <authors>Fernando Konflanz @ NS Tecnologia</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Package Description</description>
+    <description>Biblioteca para comunicação com a API de NFe da NS Tecnologia.</description>
+    <copyright>NS Tecnologia</copyright>
+    <repository type="GitHub" url="https://github.com/konflanzzz/ns-nfe-core" />
     <dependencies>
       <group targetFramework="net5.0">
         <dependency id="Newtonsoft.Json" version="13.0.1" exclude="Build,Analyzers" />
