@@ -35,7 +35,7 @@ namespace ns_nfe_core.src.nfe.utilitarios
 
             catch (Exception ex)
             {
-                util.gravarLinhaLog("[ERRO_CONSULTA_CADASTRO_CONTRIBINTE]: " + ex.Message);
+                util.gravarLinhaLog("[ERRO_CONSULTA_STATUS_WS]: " + ex.Message);
                 return null;
             }
         }

@@ -14,7 +14,7 @@ namespace ns_nfe_core
     {
         static async Task Main(string[] args)
         {
-            await enviarEmail();
+
         }
 
         static async Task emitirNFe() // Emitir NFe
@@ -123,6 +123,19 @@ namespace ns_nfe_core
             };
 
             var retorno = await EnvioEmail.sendPostRequest(requisicaoEnviarEmail);
+            Console.WriteLine();
+        }
+
+        static async Task gerarPDF()
+        {
+            //string xml = System.IO.File.ReadAllText(@"./arquivoGerarPDF.xml");
+
+            var requisicaoGerarPDF = new GerarPDF.Body
+            {
+                xml = "",
+            };
+
+            var retorno = await GerarPDF.sendPostRequest(requisicaoGerarPDF);
             Console.WriteLine();
         }
     }
