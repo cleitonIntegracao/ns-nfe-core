@@ -138,5 +138,17 @@ namespace ns_nfe_core
             var retorno = await GerarPDF.sendPostRequest(requisicaoGerarPDF);
             Console.WriteLine();
         }
+        static async Task listarNSNRec()
+        {
+            //string xml = System.IO.File.ReadAllText(@"./arquivoGerarPDF.xml");
+
+            var requisicaoListarNSNRec = new ListarNSNRec.Body
+            {
+                chNFe = "43210907364617000135550000000224741625597056"
+            };
+
+            var retorno = await ListarNSNRec.sendPostRequest(requisicaoListarNSNRec);
+            Console.WriteLine();
+        }
     }
 }

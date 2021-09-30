@@ -39,7 +39,7 @@ namespace ns_nfe_core.src.emissao
 
             catch (Exception ex)
             {
-                util.gravarLinhaLog("[ERRO_UTILITARIO_GERAR_PDF]: " + ex.Message);
+                util.gravarLinhaLog("[ERRO_UTIL_GERAR_PDF]: " + ex.Message);
                 return null;
             }
 
