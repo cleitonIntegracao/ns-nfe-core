@@ -12,7 +12,7 @@ namespace ns_nfe_core.src.nfe.eventos
     {
         public class Body
         {
-            public string cUF { get; set; }
+            public int cUF { get; set; }
             public string tpAmb { get; set; }
             public string ano { get; set; }
             public string CNPJ { get; set; }

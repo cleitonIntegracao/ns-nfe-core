@@ -14,7 +14,7 @@ namespace ns_nfe_core
     {
         static async Task Main(string[] args)
         {
-            await consultarNFe();
+            await consultarWS();
         }
 
         static async Task emitirNFe() // Emitir NFe
@@ -57,7 +57,7 @@ namespace ns_nfe_core
                 ano = "21",
                 tpAmb = "2",
                 CNPJ = "07364617000135",
-                cUF = "43",
+                cUF = 43,
                 nNFIni = "22517",
                 nNFFin = "22517",
                 serie = "0",
@@ -91,6 +91,21 @@ namespace ns_nfe_core
             };
 
             var retorno = await ConsultarSituacao.sendPostRequest(requisicaoConsultarNFe);
+            Console.WriteLine();
+        }
+
+        static async Task consultarWS()
+        {
+            var requisicaoConsultarWS = new ConsultarWebService.Body
+            {
+                CNPJCont = "07364617000135",
+                tpAmb = "2",
+                UF = 43,
+                versao =  "4.00"
+
+            };
+
+            var retorno = await ConsultarWebService.sendPostRequest(requisicaoConsultarWS);
             Console.WriteLine();
         }
     }
