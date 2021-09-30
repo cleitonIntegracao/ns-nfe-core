@@ -40,7 +40,7 @@ namespace ns_nfe_core
         {
             var requisicaoCorrecao = new CartaCorrecao.Body
             {
-                chNFe = "43210907364617000135550000000224741625597056",
+                chNFe = "",
                 dhEvento = DateTime.Now.ToString("s") + "-03:00",
                 nSeqEvento = "5",
                 tpAmb = "2",
@@ -56,10 +56,10 @@ namespace ns_nfe_core
             {
                 ano = "21",
                 tpAmb = "2",
-                CNPJ = "07364617000135",
+                CNPJ = "",
                 cUF = 43,
-                nNFIni = "22517",
-                nNFFin = "22517",
+                nNFIni = "",
+                nNFFin = "",
                 serie = "0",
                 xJust = "NUMERACAO INUTILIZADA PARA TESTES DE INTEGRACAO ESTRUTURA XSD - CORE"
             };
@@ -72,8 +72,8 @@ namespace ns_nfe_core
         {
             var requisicaoConsultaCadastro = new ConsultarCadastro.Body
             {
-                CNPJCont = "07364617000135",
-                CNPJ = "07364617000135",
+                CNPJCont = "",
+                CNPJ = "",
                 UF = "RS"
             };
 
@@ -84,9 +84,9 @@ namespace ns_nfe_core
         {
             var requisicaoConsultarNFe = new ConsultarSituacao.Body
             {
-                chNFe = "43210907364617000135550000000224741625597056",
+                chNFe = "",
                 tpAmb = "2",
-                licencaCNPJ = "07364617000135",
+                licencaCNPJ = "",
                 versao = "4.00"
             };
 
@@ -98,7 +98,7 @@ namespace ns_nfe_core
         {
             var requisicaoConsultarWS = new ConsultarWebService.Body
             {
-                CNPJCont = "07364617000135",
+                CNPJCont = "",
                 tpAmb = "2",
                 UF = 43,
                 versao =  "4.00"
@@ -115,7 +115,7 @@ namespace ns_nfe_core
 
             var requisicaoEnviarEmail = new EnvioEmail.Body
             {
-                chNFe = "43210907364617000135550000000224741625597056",
+                chNFe = "",
                 anexarEvento = true,
                 anexarPDF = true,
                 tpAmb = "2",
@@ -143,7 +143,7 @@ namespace ns_nfe_core
 
             var requisicaoListarNSNRec = new ListarNSNRec.Body
             {
-                chNFe = "43210907364617000135550000000224741625597056"
+                chNFe = ""
             };
 
             var retorno = await ListarNSNRec.sendPostRequest(requisicaoListarNSNRec);

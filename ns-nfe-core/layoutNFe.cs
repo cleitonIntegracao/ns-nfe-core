@@ -42,9 +42,9 @@ namespace ns_nfe_core
                     emit = new TNFeInfNFeEmit
                     {
                         ItemElementName = ItemChoiceType2.CNPJ,
-                        Item = "07364617000135",
+                        Item = "",
                         xNome = "NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL",
-                        IE = "0170108708",
+                        IE = "",
                         CRT = TNFeInfNFeEmitCRT.Item1,
                         enderEmit = new TEnderEmi
                         {
@@ -63,9 +63,9 @@ namespace ns_nfe_core
                     {
                         ItemElementName = ItemChoiceType3.CNPJ,
                         xNome = "NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL",
-                        Item = "07364617000135",
+                        Item = "",
                         indIEDest = TNFeInfNFeDestIndIEDest.Item1,
-                        IE = "0170108708",
+                        IE = "",
                         enderDest = new TEndereco
                         {
                             xLgr = "AV ANTONIO DURO",
