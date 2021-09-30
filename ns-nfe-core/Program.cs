@@ -14,7 +14,7 @@ namespace ns_nfe_core
     {
         static async Task Main(string[] args)
         {
-            await consultarCadastro();
+            await consultarNFe();
         }
 
         static async Task emitirNFe() // Emitir NFe
@@ -78,6 +78,19 @@ namespace ns_nfe_core
             };
 
             var retorno = await ConsultarCadastro.sendPostRequest(requisicaoConsultaCadastro);
+            Console.WriteLine();
+        }
+        static async Task consultarNFe()
+        {
+            var requisicaoConsultarNFe = new ConsultarSituacao.Body
+            {
+                chNFe = "43210907364617000135550000000224741625597056",
+                tpAmb = "2",
+                licencaCNPJ = "07364617000135",
+                versao = "4.00"
+            };
+
+            var retorno = await ConsultarSituacao.sendPostRequest(requisicaoConsultarNFe);
             Console.WriteLine();
         }
     }
