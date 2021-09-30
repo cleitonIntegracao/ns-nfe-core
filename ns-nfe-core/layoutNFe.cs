@@ -23,7 +23,7 @@ namespace ns_nfe_core
                         natOp = "VENDA A PRAZO - SEM VALOR FISCAL",
                         mod = TMod.Item55,
                         serie = "0",
-                        nNF = "22501",
+                        nNF = "22519",
                         dhEmi = DateTime.Now.ToString("s") + "-03:00",
                         tpNF = TNFeInfNFeIdeTpNF.Item1,
                         idDest = TNFeInfNFeIdeIdDest.Item1,
@@ -42,9 +42,9 @@ namespace ns_nfe_core
                     emit = new TNFeInfNFeEmit
                     {
                         ItemElementName = ItemChoiceType2.CNPJ,
-                        Item = "",
+                        Item = "07364617000135",
                         xNome = "NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL",
-                        IE = "",
+                        IE = "0170108708",
                         CRT = TNFeInfNFeEmitCRT.Item1,
                         enderEmit = new TEnderEmi
                         {
@@ -63,9 +63,9 @@ namespace ns_nfe_core
                     {
                         ItemElementName = ItemChoiceType3.CNPJ,
                         xNome = "NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL",
-                        Item = "",
+                        Item = "07364617000135",
                         indIEDest = TNFeInfNFeDestIndIEDest.Item1,
-                        IE = "",
+                        IE = "0170108708",
                         enderDest = new TEndereco
                         {
                             xLgr = "AV ANTONIO DURO",

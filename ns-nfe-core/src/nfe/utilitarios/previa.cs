@@ -37,7 +37,7 @@ namespace ns_nfe_core.src.emissao
                 if (exibeNaTela)
                 {
                     try { 
-                        util.salvarArquivo("@NFe/Previa/", "previaNFe" + requestBody.infNFe.ide.nNF, ".pdf", responseAPI.pdf); 
+                        util.salvarArquivo(@"NFe/Previa/", "previaNFe" + requestBody.infNFe.ide.nNF, ".pdf", responseAPI.pdf); 
                     }
 
                     catch (Exception ex)
@@ -48,7 +48,7 @@ namespace ns_nfe_core.src.emissao
 
                     try
                     {
-                        util.exibirPDF("@NFe/Previa/", "previaNFe" + requestBody.infNFe.ide.nNF, ".pdf");
+                        util.exibirPDF(@"NFe/Previa/", "previaNFe" + requestBody.infNFe.ide.nNF, ".pdf");
                     }
 
                     catch (Exception ex)

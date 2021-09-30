@@ -7,6 +7,7 @@ using ns_nfe_core.src.commons;
 using Newtonsoft.Json;
 using System.Xml.Serialization;
 using System.IO;
+using System.Threading;
 
 namespace ns_nfe_core.src.emissao
 {
@@ -51,7 +52,32 @@ namespace ns_nfe_core.src.emissao
 
                 responseSincrono.statusConsulta = statusResponse.status;
 
-                if ((statusResponse.status == "200"))
+                if (statusResponse.status == "-2")
+                {
+                    if (statusResponse.cStat == "996")
+                    {
+                        responseSincrono.xMotivo = statusResponse.xMotivo;
+
+                        for (int i = 0; i <= 2; i++)
+                        {
+                            Thread.Sleep(6000 - (i * 1000));
+
+                            statusResponse = await StatusProcessamento.sendPostRequest(statusBody);
+
+                            if (statusResponse.status != "-2")
+                            {
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        responseSincrono.xMotivo = statusResponse.xMotivo;
+                        responseSincrono.motivo = statusResponse.motivo;
+                    }
+                }
+
+                if (statusResponse.status == "200")
                 {
                     responseSincrono.cStat = statusResponse.cStat;
                     responseSincrono.xMotivo = statusResponse.xMotivo;
