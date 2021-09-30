@@ -14,7 +14,7 @@ namespace ns_nfe_core
     {
         static async Task Main(string[] args)
         {
-
+            await previa();
         }
 
         static async Task emitirNFe() // Emitir NFe
@@ -140,7 +140,6 @@ namespace ns_nfe_core
         }
         static async Task listarNSNRec()
         {
-            //string xml = System.IO.File.ReadAllText(@"./arquivoGerarPDF.xml");
 
             var requisicaoListarNSNRec = new ListarNSNRec.Body
             {
@@ -148,6 +147,13 @@ namespace ns_nfe_core
             };
 
             var retorno = await ListarNSNRec.sendPostRequest(requisicaoListarNSNRec);
+            Console.WriteLine();
+        }
+
+        static async Task previa()
+        {
+
+            var retorno = await Previa.sendPostRequest(layoutNFe.gerarNFeXML(),true);
             Console.WriteLine();
         }
     }
