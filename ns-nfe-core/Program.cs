@@ -14,7 +14,7 @@ namespace ns_nfe_core
     {
         static async Task Main(string[] args)
         {
-            await consultarWS();
+            await enviarEmail();
         }
 
         static async Task emitirNFe() // Emitir NFe
@@ -106,6 +106,23 @@ namespace ns_nfe_core
             };
 
             var retorno = await ConsultarWebService.sendPostRequest(requisicaoConsultarWS);
+            Console.WriteLine();
+        }
+
+        static async Task enviarEmail()
+        {
+            string[] destinatarios = new string[1] { "fernando.konflanz@nstecnologia.com.br" };
+
+            var requisicaoEnviarEmail = new EnvioEmail.Body
+            {
+                chNFe = "43210907364617000135550000000224741625597056",
+                anexarEvento = true,
+                anexarPDF = true,
+                tpAmb = "2",
+                email = destinatarios
+            };
+
+            var retorno = await EnvioEmail.sendPostRequest(requisicaoEnviarEmail);
             Console.WriteLine();
         }
     }

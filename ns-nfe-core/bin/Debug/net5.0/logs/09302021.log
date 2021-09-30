@@ -10,3 +10,9 @@
 2021.09.30 09:42:48:4116 - [URL_ENVIO] https://nfe.ns.eti.br/util/wssefazstatus
 2021.09.30 09:42:48:4289 - [DADOS_ENVIO] {"CNPJCont":"07364617000135","UF":43,"tpAmb":"2","versao":"4.00"}
 2021.09.30 09:42:48:9309 - [DADOS_RESPOSTA] {"status":200,"motivo":"Consulta realizada com sucesso","retStatusServico":{"cStat":107,"xMotivo":"Servico em Operacao"}}
+2021.09.30 09:54:41:0455 - [URL_ENVIO] https://nfe.ns.eti.br/util/resendemail
+2021.09.30 09:54:41:0502 - [DADOS_ENVIO] {"chNFe":"43210907364617000135550000000224741625597056","tpAmb":"2","anexarPDF":true,"anexarEvento":true,"emails":["fernando.konflanz@nstecnologia.com.br"]}
+2021.09.30 09:54:42:1028 - [DADOS_RESPOSTA] {"status":-2,"motivo":"'enviaEmailDoc' deve ser true ou os enderecos de destino devem ser informados no campo 'email'"}
+2021.09.30 09:57:20:5765 - [URL_ENVIO] https://nfe.ns.eti.br/util/resendemail
+2021.09.30 09:57:20:5802 - [DADOS_ENVIO] {"chNFe":"43210907364617000135550000000224741625597056","tpAmb":"2","anexarPDF":true,"anexarEvento":true,"email":["fernando.konflanz@nstecnologia.com.br"]}
+2021.09.30 09:57:21:5999 - [DADOS_RESPOSTA] {"status":200,"motivo":"Reenvio de e-mail agendado com sucesso"}
