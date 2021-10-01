@@ -74,5 +74,66 @@ Os parametros deste método são:
 + *"XP"* = tpDown = tipo de download, indicando quais os tipos de arquivos serão obtidos no Download
 + *true* = exibeNaTela = parametro boolean que indica se será exibido na tela, ou não, o DANFE obtido no download.
 + *@"NFe/Documentos/"* = caminho onde serão salvos os documentos obtidos no download.
+    
+Podemos acessarmos os dados de retorno e aplicarmos validações da seguinte forma. Tenhamos como exemplo:
+            
+            // Verifica se houve sucesso na emissão
+            if (retorno.statusEnvio == "200" || retorno.statusEnvio == "-6" || retorno.statusEnvio == "-7")
+            {
+                string statusEnvio = retorno.statusEnvio;
+                string nsNRec = retorno.nsNRec;
 
+                // Verifica se houve sucesso na consulta
+                if (retorno.statusConsulta == "200")
+                {
+                    string statusConsulta = retorno.statusConsulta;
+                    string motivo = retorno.motivo;
+                    string xMotivo = retorno.xMotivo;
+                    
+                    // Verifica se a nota foi autorizada
+                    if (retorno.cStat == "100" || retorno.cStat == "150")
+                    {
+                        // Documento autorizado com sucesso
+                        string cStat = retorno.cStat;
+                        string chNFe = retorno.chNFe;
+                        string nProt = retorno.nProt;
+                        string statusDownload = retorno.statusDownload;
+                        
+                        if (retorno.statusDownload == "200")
+                        {
+                            // Verifica de houve sucesso ao realizar o downlaod da NFe
+                            string xml = retorno.xml;
+                            string json = retorno.json;
+                            string pdf = retorno.pdf;
+                        }
+                        else {
+                            // Aqui você pode realizar um tratamento em caso de erro no download
+                            statusDownload = retorno.statusDownload;
+                            dynamic erros = retorno.erros;
+                        }
+                    }
+                    else
+                    {
+                        // NFe não foi autorizada com sucesso ou retorno diferente de 100 / 150
+                        motivo = retorno.motivo;
+                        xMotivo = retorno.xMotivo;
+                        dynamic erros = retorno.erros;
+                    }
+                }
+                else
+                {
+                    // Consulta não foi realizada com sucesso ou com retorno diferente de 200
+                    string motivo = retorno.motivo;
+                    string xMotivo = retorno.xMotivo;
+                    dynamic erros = retorno.erros;
+                }
+            }
+            else
+            {
+                // NFe não foi enviada com sucesso
+                string statusEnvio = retorno.statusEnvio;
+                string motivo = retorno.motivo;
+                string xMotivo = retorno.xMotivo;
+                dynamic erros = retorno.erros;
+            }
 
