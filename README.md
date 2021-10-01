@@ -7,7 +7,9 @@ Para imlementar esta bibilioteca em seu projeto, você pode:
 1. Realizar a instalação do [pacote](https://www.nuget.org/packages/ns-nfe-core/1.0.5?_src=template) através do Microsoft NuGet no Visual Studio
 2. Realizar o download da biblioteca pelo [GitHub](https://github.com/konflanzzz/ns-nfe-core/archive/refs/heads/main.zip) e adicionar a pasta "src" em seu projeto no C# (.NET Core )
 
-## Exemplos de uso do pacote
+# Exemplos de uso do pacote
+
+## Emissão de NFe
 
 Apos instalação através do gerenciador de pacotes NuGet, faça referência dela em seu projeto:
 
@@ -137,3 +139,6 @@ Podemos acessarmos os dados de retorno e aplicarmos validações da seguinte for
                 dynamic erros = retorno.erros;
             }
 
+## Eventos
+
+## Utilitários
