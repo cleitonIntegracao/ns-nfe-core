@@ -17,7 +17,7 @@ Apos instalação através do gerenciador de pacotes NuGet, faça referência de
     using ns_nfe_core;
 
 Para que a comunicação com a API possa ser feita, é necessário informar o seu Token no cabeçalho das requisicoes. 
-Com este pacote, você pode fazê-lo assim:
+Com este pacote, você pode fazê-lo assim como no exemplo:
 
     configParceiro.token = "4dec0a34f460169dd6fb2ef9193003e0"
 
@@ -160,7 +160,7 @@ Para realizarmos um cancelamento de uma NFe, devemos gerar o objeto do corpo da 
                 dhEvento = DateTime.Now.ToString("s") + "-03:00",
                 nProt = "143210000654108",
                 tpAmb = "2",
-                xJust = "CANCELAMENTO REALIZADO PARA FINS DE TESTE DE INTEGRACAO DE EXEMPLO NFE-CORE"
+                xJust = "CANCELAMENTO REALIZADO PARA FINS DE TESTE DE INTEGRACAO"
             };
 
             var retorno = await Cancelamento.sendPostRequest(requisicaoCancelamento,"XP", @"NFe/Eventos/",true);
@@ -187,7 +187,7 @@ Para emitirmos uma carta de correção de uma NFe, devemos gerar o objeto do cor
                 dhEvento = DateTime.Now.ToString("s") + "-03:00",
                 nSeqEvento = "1",
                 tpAmb = "2",
-                xCorrecao = "CORRECAO REALIZADO PARA FINS DE TESTE DE INTEGRACAO DE EXEMPLO NFE-CORE"
+                xCorrecao = "CORRECAO REALIZADO PARA FINS DE TESTE DE INTEGRACAO"
             };
 
             var retorno = await CartaCorrecao.sendPostRequest(requisicaoCorrecao, "XP", @"NFe/Eventos/",true);
@@ -195,10 +195,39 @@ Para emitirmos uma carta de correção de uma NFe, devemos gerar o objeto do cor
         
 Os parametros informados no método são:
 
-+ *requisicaoCorrecao* =  Objeto contendo as informações do corpo da requisição de cancelamento;
-+ "XP" = tpDown = tipo de download, indicando quais os tipos de arquivos serão obtidos no download do evento de cancelamento;
-+ *@"NFe/Eventos/"* = diretório onde serão salvos os arquivos obtidos no download do evento de cancelamento;
-+ *true* = exibeNaTela = parametro boolean que indica se será exibido na tela, ou não, o PDF obtido no download do evento de cancelamento;
++ *requisicaoCorrecao* =  Objeto contendo as informações do corpo da requisição da carta de correção;
++ "XP" = tpDown = tipo de download, indicando quais os tipos de arquivos serão obtidos no download do evento de carta de correção;
++ *@"NFe/Eventos/"* = diretório onde serão salvos os arquivos obtidos no download do evento de carta de correção;
++ *true* = exibeNaTela = parametro boolean que indica se será exibido na tela, ou não, o PDF obtido no download do evento de carta de correção;
+
+## Inutilização de numeração da NFe
+
+Para emitirmos uma inutilização de numeração da NFe, devemos gerar o objeto do corpo da requisição, utilizando a classe *Inutilizacao.Body*, e utilzar o método *Inutilizacao.sendPostRequest*, da seguinte forma:
+        
+        static async Task inutilizarNFe()
+        {
+            var requisicaoInutilizar = new Inutilizacao.Body
+            {
+                ano = "21",
+                tpAmb = "2",
+                CNPJ = "14139046000109",
+                cUF = 43,
+                nNFIni = "150",
+                nNFFin = "155",
+                serie = "0",
+                xJust = "NUMERACAO INUTILIZADA PARA TESTES DE INTEGRACAO"
+            };
+
+            var retorno = await Inutilizacao.sendPostRequest(requisicaoInutilizar, "XP", @"NFe/Eventos/", true);
+            Console.WriteLine();
+        }
+        
+Os parametros informados no método são:
+
++ *requisicaoInutilizar* =  Objeto contendo as informações do corpo da requisição de inutilização;
++ "XP" = tpDown = tipo de download, indicando quais os tipos de arquivos serão obtidos no download do evento de inutilização;
++ *@"NFe/Eventos/"* = diretório onde serão salvos os arquivos obtidos no download do evento de inutilização;
++ *true* = exibeNaTela = parametro boolean que indica se será exibido na tela, ou não, o PDF obtido no download do evento de inutilização;
 
 ## Utilitários
 
