@@ -5,7 +5,10 @@ Esta biblioteca possibilita a comunicação e o consumo da solução API para NF
 Para imlementar esta bibilioteca em seu projeto, você pode:
 
 1. Realizar a instalação do [pacote](https://www.nuget.org/packages/ns-nfe-core/1.0.5?_src=template) através do Microsoft NuGet no Visual Studio
-2. Realizar o download da biblioteca pelo [GitHub](https://github.com/konflanzzz/ns-nfe-core/archive/refs/heads/main.zip) e adicionar a pasta "src" em seu projeto no C# (.NET Core )
+
+![Screenshot_4](https://user-images.githubusercontent.com/49299197/135635665-bfb55be5-59e6-4f1e-80dc-0992787c66bf.jpg)
+
+3. Realizar o download da biblioteca pelo [GitHub](https://github.com/konflanzzz/ns-nfe-core/archive/refs/heads/main.zip) e adicionar a pasta "src" em seu projeto no C# (.NET Core )
 
 # Exemplos de uso do pacote
 
