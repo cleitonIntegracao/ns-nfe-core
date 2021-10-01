@@ -9,8 +9,6 @@ Para imlementar esta bibilioteca em seu projeto, você pode:
 
 # Exemplos de uso do pacote
 
-## Emissão de NFe
-
 Apos instalação através do gerenciador de pacotes NuGet, faça referência dela em seu projeto:
 
     using ns_nfe_core;
@@ -19,6 +17,8 @@ Para que a comunicação com a API possa ser feita, é necessário informar o se
 Com este pacote, você pode fazê-lo assim:
 
     configParceiro.token = "4dec0a34f460169dd6fb2ef9193003e0"
+
+## Emissão
 
 Para realizarmos a emissão de uma NFe, vamos utilizar os seguintes métodos. Tenhamos como exemplo:
 
