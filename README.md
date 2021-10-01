@@ -76,9 +76,9 @@ Os parametros deste método são:
     var retorno = await EmissaoSincrona.sendPostRequest(NFeXML, "XP", true, @"NFe/Documentos/");
     
 + *NFeXML* = objeto NFe que será serializado para envio;
-+ *"XP"* = tpDown = tipo de download, indicando quais os tipos de arquivos serão obtidos no Download
-+ *true* = exibeNaTela = parametro boolean que indica se será exibido na tela, ou não, o DANFE obtido no download.
-+ *@"NFe/Documentos/"* = caminho onde serão salvos os documentos obtidos no download.
++ *"XP"* = tpDown = tipo de download, indicando quais os tipos de arquivos serão obtidos no Download;
++ *true* = exibeNaTela = parametro boolean que indica se será exibido na tela, ou não, o DANFE obtido no download;
++ *@"NFe/Documentos/"* = diretório onde serão salvos os documentos obtidos no download;
     
 Podemos acessarmos os dados de retorno e aplicarmos validações da seguinte forma. Tenhamos como exemplo:
             
@@ -144,4 +144,34 @@ Podemos acessarmos os dados de retorno e aplicarmos validações da seguinte for
 
 ## Eventos
 
+### Cancelar NFe
+
+Para realizarmos um cancelamento de uma NFe, devemos gerar o objeto do corpo da requisição, utilizando a classe *Cancelamento.Body*, e utilzar o método *Cancelamento.sendPostRequest*, da seguinte forma:
+
+        static async Task cancelarNFe() // Cancelar NFe
+        {
+            var requisicaoCancelamento = new Cancelamento.Body
+            {
+                chNFe = "43210914139046000109550000000257891100116493",
+                dhEvento = DateTime.Now.ToString("s") + "-03:00",
+                nProt = "143210000654108",
+                tpAmb = "2",
+                xJust = "CANCELAMENTO REALIZADO PARA FINS DE TESTE DE INTEGRACAO DE EXEMPLO NFE-CORE"
+            };
+
+            var retorno = await Cancelamento.sendPostRequest(requisicaoCancelamento,"XP", @"NFe/Eventos/",true);
+        }
+        
+Os parametros informados no método são:
+
++ *requisicaoCancelamento* =  Objeto contendo as informações do corpo da requisição de cancelamento;
++ "XP" = tpDown = tipo de download, indicando quais os tipos de arquivos serão obtidos no download do evento de cancelamento;
++ *@"NFe/Eventos/"* = diretório onde serão salvos os arquivos obtidos no download do evento de cancelamento;
++ *true* = exibeNaTela = parametro boolean que indica se será exibido na tela, ou não, o PDF obtido no download do evento de cancelamento;
+
 ## Utilitários
+
+
+### Informações Adicionais
+
+Para saber mais sobre o projeto NFe, consulte a documentação da nossa [API](https://docsnstecnologia.wpcomstaging.com/docs/ns-nfe/)
