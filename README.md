@@ -205,4 +205,4 @@ Os parametros informados no método são:
 
 ### Informações Adicionais
 
-Para saber mais sobre o projeto NFe, consulte a documentação da nossa [API](https://docsnstecnologia.wpcomstaging.com/docs/ns-nfe/)
+Para saber mais sobre o projeto NFe API da NS Tecnologia, consulte a [documentação](https://docsnstecnologia.wpcomstaging.com/docs/ns-nfe/)
