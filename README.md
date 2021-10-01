@@ -25,6 +25,8 @@ Com este pacote, você pode fazê-lo assim:
 
 Para realizarmos a emissão de uma NFe, vamos utilizar os seguintes métodos. Tenhamos como exemplo:
 
+    using ns_nfe_core.src.emissao;
+    
     static async Task emitirNFe() // Emitir NFe
     {
         var NFeXML = layoutNFe.gerarNFeXML();
@@ -147,8 +149,10 @@ Podemos acessarmos os dados de retorno e aplicarmos validações da seguinte for
 ### Cancelar NFe
 
 Para realizarmos um cancelamento de uma NFe, devemos gerar o objeto do corpo da requisição, utilizando a classe *Cancelamento.Body*, e utilzar o método *Cancelamento.sendPostRequest*, da seguinte forma:
-
-        static async Task cancelarNFe() // Cancelar NFe
+        
+        using ns_nfe_core.src.eventos;
+        
+        static async Task cancelarNFe()
         {
             var requisicaoCancelamento = new Cancelamento.Body
             {
@@ -165,6 +169,33 @@ Para realizarmos um cancelamento de uma NFe, devemos gerar o objeto do corpo da 
 Os parametros informados no método são:
 
 + *requisicaoCancelamento* =  Objeto contendo as informações do corpo da requisição de cancelamento;
++ "XP" = tpDown = tipo de download, indicando quais os tipos de arquivos serão obtidos no download do evento de cancelamento;
++ *@"NFe/Eventos/"* = diretório onde serão salvos os arquivos obtidos no download do evento de cancelamento;
++ *true* = exibeNaTela = parametro boolean que indica se será exibido na tela, ou não, o PDF obtido no download do evento de cancelamento;
+
+## Carta de Correção para NFe
+
+Para emitirmos uma carta de correção de uma NFe, devemos gerar o objeto do corpo da requisição, utilizando a classe *CartaCorrecao.Body*, e utilzar o método *CartaCorrecao.sendPostRequest*, da seguinte forma:
+        
+        using ns_nfe_core.src.eventos;
+        
+        static async Task corrigirNFe()
+        {
+            var requisicaoCorrecao = new CartaCorrecao.Body
+            {
+                chNFe = "43210914139046000109550000000257891100116493",
+                dhEvento = DateTime.Now.ToString("s") + "-03:00",
+                nSeqEvento = "1",
+                tpAmb = "2",
+                xCorrecao = "CORRECAO REALIZADO PARA FINS DE TESTE DE INTEGRACAO DE EXEMPLO NFE-CORE"
+            };
+
+            var retorno = await CartaCorrecao.sendPostRequest(requisicaoCorrecao, "XP", @"NFe/Eventos/",true);
+        }
+        
+Os parametros informados no método são:
+
++ *requisicaoCorrecao* =  Objeto contendo as informações do corpo da requisição de cancelamento;
 + "XP" = tpDown = tipo de download, indicando quais os tipos de arquivos serão obtidos no download do evento de cancelamento;
 + *@"NFe/Eventos/"* = diretório onde serão salvos os arquivos obtidos no download do evento de cancelamento;
 + *true* = exibeNaTela = parametro boolean que indica se será exibido na tela, ou não, o PDF obtido no download do evento de cancelamento;
