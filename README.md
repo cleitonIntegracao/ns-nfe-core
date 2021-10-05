@@ -173,7 +173,7 @@ Os parametros informados no método são:
 + *@"NFe/Eventos/"* = diretório onde serão salvos os arquivos obtidos no download do evento de cancelamento;
 + *true* = exibeNaTela = parametro boolean que indica se será exibido na tela, ou não, o PDF obtido no download do evento de cancelamento;
 
-## Carta de Correção para NFe
+### Carta de Correção para NFe
 
 Para emitirmos uma carta de correção de uma NFe, devemos gerar o objeto do corpo da requisição, utilizando a classe *CartaCorrecao.Body*, e utilzar o método *CartaCorrecao.sendPostRequest*, da seguinte forma:
         
@@ -200,9 +200,11 @@ Os parametros informados no método são:
 + *@"NFe/Eventos/"* = diretório onde serão salvos os arquivos obtidos no download do evento de carta de correção;
 + *true* = exibeNaTela = parametro boolean que indica se será exibido na tela, ou não, o PDF obtido no download do evento de carta de correção;
 
-## Inutilização de numeração da NFe
+### Inutilização de numeração da NFe
 
 Para emitirmos uma inutilização de numeração da NFe, devemos gerar o objeto do corpo da requisição, utilizando a classe *Inutilizacao.Body*, e utilzar o método *Inutilizacao.sendPostRequest*, da seguinte forma:
+
+        using ns_nfe_core.src.nfe.eventos;
         
         static async Task inutilizarNFe()
         {
@@ -219,7 +221,6 @@ Para emitirmos uma inutilização de numeração da NFe, devemos gerar o objeto 
             };
 
             var retorno = await Inutilizacao.sendPostRequest(requisicaoInutilizar, "XP", @"NFe/Eventos/", true);
-            Console.WriteLine();
         }
         
 Os parametros informados no método são:
@@ -231,6 +232,120 @@ Os parametros informados no método são:
 
 ## Utilitários
 
+Ainda com esta biblioteca, é possivel acessar método utilitários da API de NFe. Veja exemplos:
+
+### Consulta de cadastro de contribuinte
+
+        using ns_nfe_core.src.nfe.utilitarios;
+
+        static async Task consultarCadastro()
+        {
+            var requisicaoConsultaCadastro = new ConsultarCadastro.Body
+            {
+                CNPJCont = "14139046000109",
+                CNPJ = "",
+                UF = "RS"
+            };
+
+            var retorno = await ConsultarCadastro.sendPostRequest(requisicaoConsultaCadastro);
+        }
+
+### Consultar situação de NFe
+        
+        using ns_nfe_core.src.nfe.utilitarios;
+        
+        static async Task consultarNFe()
+        {
+            var requisicaoConsultarNFe = new ConsultarSituacao.Body
+            {
+                chNFe = "43210914139046000109550000000257891100116493",
+                tpAmb = "2",
+                licencaCNPJ = "14139046000109",
+                versao = "4.00"
+            };
+
+            var retorno = await ConsultarSituacao.sendPostRequest(requisicaoConsultarNFe);
+        }
+        
+### Consultar Status de Web Service
+
+    using ns_nfe_core.src.nfe.utilitarios;
+    
+            static async Task consultarWS()
+        {
+            var requisicaoConsultarWS = new ConsultarWebService.Body
+            {
+                CNPJCont = "14139046000109",
+                tpAmb = "2",
+                UF = 43,
+                versao =  "4.00"
+
+            };
+
+            var retorno = await ConsultarWebService.sendPostRequest(requisicaoConsultarWS);
+        }
+
+### Agendamento de Envio de E-Mail de NFe
+        
+        using ns_nfe_core.src.nfe.utilitarios;
+        
+        static async Task enviarEmail()
+        {
+            string[] destinatarios = new string[1] { "teste@email.com.br" };
+
+            var requisicaoEnviarEmail = new EnvioEmail.Body
+            {
+                chNFe = "43210914139046000109550000000257891100116493",
+                anexarEvento = true,
+                anexarPDF = true,
+                tpAmb = "2",
+                email = destinatarios
+            };
+
+            var retorno = await EnvioEmail.sendPostRequest(requisicaoEnviarEmail);
+        }
+        
+### Gerar PDF a partir de um XML de NFe Autorizada
+        
+        using ns_nfe_core.src.nfe.utilitarios;
+            
+        static async Task gerarPDF()
+        {   
+            //para gerar a partir de um arquivo .xml
+            //string xml = System.IO.File.ReadAllText(@"./arquivoGerarPDF.xml");
+
+            var requisicaoGerarPDF = new GerarPDF.Body
+            {
+                xml = "<nfeProc versao="4.00" xmlns="http://www.portalfiscal.inf.br/nfe"><NFe xmlns="http://www.portalfiscal.inf.br/nfe"><infNFe versao="4.00"...,
+            };
+
+            var retorno = await GerarPDF.sendPostRequest(requisicaoGerarPDF);
+        }
+### Listagem de nsNRec's vinculados à uma NFe
+
+        using ns_nfe_core.src.nfe.utilitarios;
+        
+        static async Task listarNSNRec()
+        {
+
+            var requisicaoListarNSNRec = new ListarNSNRec.Body
+            {
+                chNFe = "43210914139046000109550000000257891100116493"
+            };
+
+            var retorno = await ListarNSNRec.sendPostRequest(requisicaoListarNSNRec);
+        }
+
+### Gerar prévia de DANFE 
+
+        using ns_nfe_core.src.nfe.utilitarios;
+
+        static async Task previa()
+        {   
+            // utilizando método de exemplo para gerar o objeto da NFE
+            var retorno = await Previa.sendPostRequest(layoutNFe.gerarNFeXML(),true);
+            Console.WriteLine();
+        }
 
 ### Informações Adicionais
 
