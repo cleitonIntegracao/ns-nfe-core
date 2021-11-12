@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ns_nfe_core.src.commons;
+﻿using System.Threading.Tasks;
 using Newtonsoft.Json;
-using System.Xml.Serialization;
-using System.IO;
 using System.Threading;
+using ns_nfe_core.src.emissao.xsd;
 
 namespace ns_nfe_core.src.emissao
 {

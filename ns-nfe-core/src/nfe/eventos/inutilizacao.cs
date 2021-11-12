@@ -1,9 +1,6 @@
 ﻿using Newtonsoft.Json;
 using ns_nfe_core.src.commons;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ns_nfe_core.src.nfe.eventos
@@ -37,7 +34,7 @@ namespace ns_nfe_core.src.nfe.eventos
             {
                 string url = "https://nfe.ns.eti.br/nfe/inut";
 
-                var responseAPI = JsonConvert.DeserializeObject<Response>(await nsAPI.postRequest(url, JsonConvert.SerializeObject(requestBody)));
+                var responseAPI = JsonConvert.DeserializeObject<Response>(await NSAPI.postRequest(url, JsonConvert.SerializeObject(requestBody)));
 
                 if (responseAPI.status == "200")
                 {
@@ -57,7 +54,7 @@ namespace ns_nfe_core.src.nfe.eventos
 
                         catch (Exception ex)
                         {
-                            util.gravarLinhaLog("[ERRO_DOWNLOAD_INUTILIZACAO]: " + ex);
+                            Util.gravarLinhaLog("[ERRO_DOWNLOAD_INUTILIZACAO]: " + ex);
                         }
 
                     }
@@ -68,7 +65,7 @@ namespace ns_nfe_core.src.nfe.eventos
 
             catch (Exception ex)
             {
-                util.gravarLinhaLog("[ERRO_INUTILIZAR_NFE]: " + ex.Message);
+                Util.gravarLinhaLog("[ERRO_INUTILIZAR_NFE]: " + ex.Message);
                 return null;
             }
         }

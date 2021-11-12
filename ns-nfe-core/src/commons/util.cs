@@ -4,7 +4,7 @@ using System.IO;
 
 namespace ns_nfe_core.src.commons
 {
-    class util
+    class Util
     {
         public static void gravarLinhaLog(string registro)
         {

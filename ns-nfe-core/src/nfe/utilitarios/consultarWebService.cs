@@ -29,13 +29,13 @@ namespace ns_nfe_core.src.nfe.utilitarios
             string url = "https://nfe.ns.eti.br/util/wssefazstatus";
             try
             {
-                var responseAPI = JsonConvert.DeserializeObject<Response>(await nsAPI.postRequest(url, JsonConvert.SerializeObject(requestBody)));
+                var responseAPI = JsonConvert.DeserializeObject<Response>(await NSAPI.postRequest(url, JsonConvert.SerializeObject(requestBody)));
                 return responseAPI;
             }
 
             catch (Exception ex)
             {
-                util.gravarLinhaLog("[ERRO_CONSULTA_STATUS_WS]: " + ex.Message);
+                Util.gravarLinhaLog("[ERRO_CONSULTA_STATUS_WS]: " + ex.Message);
                 return null;
             }
         }

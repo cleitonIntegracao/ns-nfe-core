@@ -29,13 +29,13 @@ namespace ns_nfe_core.src.nfe.utilitarios
             string url = "https://nfe.ns.eti.br/nfe/stats";
             try
             {
-                var responseAPI = JsonConvert.DeserializeObject<Response>(await nsAPI.postRequest(url, JsonConvert.SerializeObject(requestBody)));
+                var responseAPI = JsonConvert.DeserializeObject<Response>(await NSAPI.postRequest(url, JsonConvert.SerializeObject(requestBody)));
                 return responseAPI;
             }
 
             catch (Exception ex)
             {
-                util.gravarLinhaLog("[ERRO_CONSULTA_SITUACAO_NFE]: " + ex.Message);
+                Util.gravarLinhaLog("[ERRO_CONSULTA_SITUACAO_NFE]: " + ex.Message);
                 return null;
             }
         }

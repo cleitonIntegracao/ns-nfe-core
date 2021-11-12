@@ -1,4 +1,4 @@
-﻿public class configParceiro
+﻿public class ConfigParceiro
 {
     public static string token = "";
 }

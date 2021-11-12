@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ns_nfe_core.src.commons
 {
 
-    class nsAPI
+    class NSAPI
     {
         public static async Task<string> postRequest(string url, string body, string tpConteudo = "json") 
         {
@@ -16,24 +16,24 @@ namespace ns_nfe_core.src.commons
 
             StringContent requestBody = new StringContent(body, Encoding.UTF8, "application/" + tpConteudo);
 
-            apiClient.DefaultRequestHeaders.Add("X-AUTH-TOKEN", configParceiro.token);
+            apiClient.DefaultRequestHeaders.Add("X-AUTH-TOKEN", ConfigParceiro.token);
 
             try
             {
-                util.gravarLinhaLog("[URL_ENVIO] " + url);
-                util.gravarLinhaLog("[DADOS_ENVIO] " + body);
+                Util.gravarLinhaLog("[URL_ENVIO] " + url);
+                Util.gravarLinhaLog("[DADOS_ENVIO] " + body);
 
                 var getResponse = await apiClient.PostAsync(url, requestBody);
                 responseAPI = await getResponse.Content.ReadAsStringAsync();
 
-                util.gravarLinhaLog("[DADOS_RESPOSTA] " + responseAPI);
+                Util.gravarLinhaLog("[DADOS_RESPOSTA] " + responseAPI);
 
                 return responseAPI;
             }
 
             catch (Exception ex)
             {
-                util.gravarLinhaLog("[ERRO_ENVIO_DADOS_API]: " + ex.Message);
+                Util.gravarLinhaLog("[ERRO_ENVIO_DADOS_API]: " + ex.Message);
                 return ex.Message;
             }
 

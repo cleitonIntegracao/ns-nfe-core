@@ -35,26 +35,26 @@ namespace ns_nfe_core.src.emissao
             {
                 string url = "https://nfe.ns.eti.br/nfe/get";
 
-                var responseAPI = JsonConvert.DeserializeObject<Response>(await nsAPI.postRequest(url, JsonConvert.SerializeObject(requestBody)));
+                var responseAPI = JsonConvert.DeserializeObject<Response>(await NSAPI.postRequest(url, JsonConvert.SerializeObject(requestBody)));
 
                 if (responseAPI.nfeProc != null)
                 {
-                    util.salvarArquivo(caminhoSalvar, responseAPI.chNFe, "-nfeProc.json", JsonConvert.SerializeObject(responseAPI.nfeProc));
+                    Util.salvarArquivo(caminhoSalvar, responseAPI.chNFe, "-nfeProc.json", JsonConvert.SerializeObject(responseAPI.nfeProc));
                 }
 
                 if (responseAPI.pdf != null)
                 {
-                    util.salvarArquivo(caminhoSalvar, responseAPI.chNFe, "-nfeProc.pdf", responseAPI.pdf);
+                    Util.salvarArquivo(caminhoSalvar, responseAPI.chNFe, "-nfeProc.pdf", responseAPI.pdf);
 
                     if (exibeNaTela)
                     {
-                        util.exibirPDF(caminhoSalvar, responseAPI.chNFe, "-nfeProc.pdf");
+                        Util.exibirPDF(caminhoSalvar, responseAPI.chNFe, "-nfeProc.pdf");
                     };
                 }
 
                 if (responseAPI.xml != null)
                 {
-                    util.salvarArquivo(caminhoSalvar, responseAPI.chNFe, "-nfeProc.xml", responseAPI.xml);
+                    Util.salvarArquivo(caminhoSalvar, responseAPI.chNFe, "-nfeProc.xml", responseAPI.xml);
                 }
 
                 return responseAPI;
@@ -62,7 +62,7 @@ namespace ns_nfe_core.src.emissao
 
             catch (Exception ex)
             {
-                util.gravarLinhaLog("[ERRO_DOWNLOAD]: " + ex.Message);
+                Util.gravarLinhaLog("[ERRO_DOWNLOAD]: " + ex.Message);
                 return null;
             }
         }

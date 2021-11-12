@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ns_nfe_core.src.emissao;
+using ns_nfe_core.src.emissao.xsd;
 
-namespace ns_nfe_core
+namespace ns_nfe_core_test
 {
     class layoutNFe
     {
         public static TNFe gerarNFeXML()
         {
-            TNFe NFe = new TNFe
+            TNFe NFe = new()
             {
                 infNFe = new TNFeInfNFe
                 {
@@ -191,6 +187,37 @@ namespace ns_nfe_core
                     }
                 }
             };
+            return NFe;
+        }
+
+        public static TNFe gerarLayoutNFe()
+        {
+            TNFe NFe = new();
+
+            NFe.infNFe = new TNFeInfNFe();
+
+            NFe.infNFe.ide = new TNFeInfNFeIde();
+            NFe.infNFe.ide.cUF = (TCodUfIBGE)Enum.Parse(typeof(TCodUfIBGE), "Item" + Convert.ToInt16("43")),
+            NFe.infNFe.ide.cNF = "";
+            NFe.infNFe.ide.natOp = "VENDA A PRAZO - SEM VALOR FISCAL";
+            NFe.infNFe.ide.mod = TMod.Item55;
+            NFe.infNFe.ide.serie = "0";
+            NFe.infNFe.ide.nNF = "22519";
+            NFe.infNFe.ide.dhEmi = DateTime.Now.ToString("s") + "-03:00";
+            NFe.infNFe.ide.tpNF = TNFeInfNFeIdeTpNF.Item1;
+            NFe.infNFe.ide.idDest = TNFeInfNFeIdeIdDest.Item1;
+            NFe.infNFe.ide.cMunFG = "4305108";
+            NFe.infNFe.ide.tpImp = TNFeInfNFeIdeTpImp.Item1;
+            NFe.infNFe.ide.tpEmis = TNFeInfNFeIdeTpEmis.Item1;
+            NFe.infNFe.ide.cDV = "";
+            NFe.infNFe.ide.tpAmb = TAmb.Item2;
+            NFe.infNFe.ide.finNFe = TFinNFe.Item1;
+            NFe.infNFe.ide.indFinal = TNFeInfNFeIdeIndFinal.Item0;
+            NFe.infNFe.ide.indPres = TNFeInfNFeIdeIndPres.Item9;
+            NFe.infNFe.ide.indIntermed = TNFeInfNFeIdeIndIntermed.Item0;
+            NFe.infNFe.ide.procEmi = TProcEmi.Item0;
+            NFe.infNFe.ide.verProc = "4.00";
+
             return NFe;
         }
     }

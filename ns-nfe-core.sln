@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30804.86
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ns-nfe-core", "ns-nfe-core\ns-nfe-core.csproj", "{CF3FCCFD-5CB7-4D60-8473-2E6E753E195F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ns-nfe-core", "ns-nfe-core\ns-nfe-core.csproj", "{CF3FCCFD-5CB7-4D60-8473-2E6E753E195F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ns-nfe-core-test", "ns-nfe-core-test\ns-nfe-core-test.csproj", "{CA9F10A7-A003-45BD-AB1D-11208D8B27E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ns-nfe-core-integration", "ns-nfe-core-integration\ns-nfe-core-integration.csproj", "{A18A17EC-00D3-4FCC-B01F-59DE3CF86B3B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{CF3FCCFD-5CB7-4D60-8473-2E6E753E195F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF3FCCFD-5CB7-4D60-8473-2E6E753E195F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF3FCCFD-5CB7-4D60-8473-2E6E753E195F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA9F10A7-A003-45BD-AB1D-11208D8B27E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA9F10A7-A003-45BD-AB1D-11208D8B27E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA9F10A7-A003-45BD-AB1D-11208D8B27E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA9F10A7-A003-45BD-AB1D-11208D8B27E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A18A17EC-00D3-4FCC-B01F-59DE3CF86B3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A18A17EC-00D3-4FCC-B01F-59DE3CF86B3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A18A17EC-00D3-4FCC-B01F-59DE3CF86B3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A18A17EC-00D3-4FCC-B01F-59DE3CF86B3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

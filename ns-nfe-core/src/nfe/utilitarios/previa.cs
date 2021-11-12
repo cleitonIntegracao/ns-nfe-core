@@ -4,6 +4,7 @@ using ns_nfe_core.src.commons;
 using Newtonsoft.Json;
 using System.Xml.Serialization;
 using System.IO;
+using ns_nfe_core.src.emissao.xsd;
 
 namespace ns_nfe_core.src.emissao
 {
@@ -33,27 +34,27 @@ namespace ns_nfe_core.src.emissao
 
             try
             {
-                var responseAPI = JsonConvert.DeserializeObject<Response>(await nsAPI.postRequest(url, nfeToXML(requestBody), "xml"));
+                var responseAPI = JsonConvert.DeserializeObject<Response>(await NSAPI.postRequest(url, nfeToXML(requestBody), "xml"));
                 if (exibeNaTela)
                 {
                     try { 
-                        util.salvarArquivo(@"NFe/Previa/", "previaNFe" + requestBody.infNFe.ide.nNF, ".pdf", responseAPI.pdf); 
+                        Util.salvarArquivo(@"NFe/Previa/", "previaNFe" + requestBody.infNFe.ide.nNF, ".pdf", responseAPI.pdf); 
                     }
 
                     catch (Exception ex)
                     {
-                        util.gravarLinhaLog("[ERRO_SALVAR_PREVIA]: " + ex.Message);
+                        Util.gravarLinhaLog("[ERRO_SALVAR_PREVIA]: " + ex.Message);
                         return null;
                     }
 
                     try
                     {
-                        util.exibirPDF(@"NFe/Previa/", "previaNFe" + requestBody.infNFe.ide.nNF, ".pdf");
+                        Util.exibirPDF(@"NFe/Previa/", "previaNFe" + requestBody.infNFe.ide.nNF, ".pdf");
                     }
 
                     catch (Exception ex)
                     {
-                        util.gravarLinhaLog("[ERRO_EXIBIR_PREVIA]: " + ex.Message);
+                        Util.gravarLinhaLog("[ERRO_EXIBIR_PREVIA]: " + ex.Message);
                         return null;
                     }
 
@@ -63,7 +64,7 @@ namespace ns_nfe_core.src.emissao
 
             catch (Exception ex)
             {
-                util.gravarLinhaLog("[ERRO_PREVIA]: " + ex.Message);
+                Util.gravarLinhaLog("[ERRO_PREVIA]: " + ex.Message);
                 return null;
             }
 

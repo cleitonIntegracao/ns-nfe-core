@@ -32,31 +32,31 @@ namespace ns_nfe_core.src.nfe.eventos
             {
                 string url = "https://nfe.ns.eti.br/nfe/get/inut";
 
-                var responseAPI = JsonConvert.DeserializeObject<Response>(await nsAPI.postRequest(url, JsonConvert.SerializeObject(requestBody)));
+                var responseAPI = JsonConvert.DeserializeObject<Response>(await NSAPI.postRequest(url, JsonConvert.SerializeObject(requestBody)));
 
                 if (responseAPI.retInut.json != null)
                 {
                     var json = (string)responseAPI.retInut.json;
                     var chave = (string)responseAPI.retInut.chave;
-                    util.salvarArquivo(caminhoSalvar, chave, "-procInut.json", json);
+                    Util.salvarArquivo(caminhoSalvar, chave, "-procInut.json", json);
                 }
 
                 if (responseAPI.retInut.xml != null)
                 {
                     var xml = (string)responseAPI.retInut.xml;
                     var chave = (string)responseAPI.retInut.chave;
-                    util.salvarArquivo(caminhoSalvar, chave, "-procInut.xml", xml);
+                    Util.salvarArquivo(caminhoSalvar, chave, "-procInut.xml", xml);
                 }
 
                 if (responseAPI.retInut.pdf != null)
                 {
                     var pdf = (string)responseAPI.retInut.pdf;
                     var chave = (string)responseAPI.retInut.chave;
-                    util.salvarArquivo(caminhoSalvar, chave, "-procInut.pdf", pdf);
+                    Util.salvarArquivo(caminhoSalvar, chave, "-procInut.pdf", pdf);
 
                     if (exibeNaTela)
                     {
-                        util.exibirPDF(caminhoSalvar, chave, "-procInut.pdf");
+                        Util.exibirPDF(caminhoSalvar, chave, "-procInut.pdf");
                     };
                 }
 
@@ -65,7 +65,7 @@ namespace ns_nfe_core.src.nfe.eventos
 
             catch (Exception ex)
             {
-                util.gravarLinhaLog("[ERRO_DOWNLOAD_INUTILIZACAO]: " + ex.Message);
+                Util.gravarLinhaLog("[ERRO_DOWNLOAD_INUTILIZACAO]: " + ex.Message);
                 return null;
             }
         }

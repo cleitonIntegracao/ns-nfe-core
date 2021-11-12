@@ -1,0 +1,21 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "cf3fccfd-5cb7-4d60-8473-2e6e753e195f": {
+      "ProjectGuid": "cf3fccfd-5cb7-4d60-8473-2e6e753e195f",
+      "DisplayName": "ns-nfe-core",
+      "ColorIndex": 0
+    },
+    "ca9f10a7-a003-45bd-ab1d-11208d8b27e3": {
+      "ProjectGuid": "ca9f10a7-a003-45bd-ab1d-11208d8b27e3",
+      "DisplayName": "ns-nfe-core-test",
+      "ColorIndex": 1
+    },
+    "a18a17ec-00d3-4fcc-b01f-59de3cf86b3b": {
+      "ProjectGuid": "a18a17ec-00d3-4fcc-b01f-59de3cf86b3b",
+      "DisplayName": "ns-nfe-core-integration",
+      "ColorIndex": 2
+    }
+  },
+  "NextColorIndex": 3
+}

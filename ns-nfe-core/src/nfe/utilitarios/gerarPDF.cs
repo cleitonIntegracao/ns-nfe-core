@@ -33,13 +33,13 @@ namespace ns_nfe_core.src.emissao
 
             try
             {
-                var responseAPI = JsonConvert.DeserializeObject<Response>(await nsAPI.postRequest(url, JsonConvert.SerializeObject(requestBody), "json"));
+                var responseAPI = JsonConvert.DeserializeObject<Response>(await NSAPI.postRequest(url, JsonConvert.SerializeObject(requestBody), "json"));
                 return responseAPI;
             }
 
             catch (Exception ex)
             {
-                util.gravarLinhaLog("[ERRO_UTIL_GERAR_PDF]: " + ex.Message);
+                Util.gravarLinhaLog("[ERRO_UTIL_GERAR_PDF]: " + ex.Message);
                 return null;
             }
 

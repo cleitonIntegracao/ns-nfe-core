@@ -34,3 +34,10 @@ C:\Users\fernando.konflanz\GitHub\ns-nfe-core\ns-nfe-core\obj\Debug\net5.0\ns-nf
 C:\Users\fernando.konflanz\GitHub\ns-nfe-core\ns-nfe-core\obj\Debug\net5.0\ref\ns-nfe-core.dll
 C:\Users\fernando.konflanz\GitHub\ns-nfe-core\ns-nfe-core\obj\Debug\net5.0\ns-nfe-core.pdb
 C:\Users\fernando.konflanz\GitHub\ns-nfe-core\ns-nfe-core\obj\Debug\net5.0\ns-nfe-core.genruntimeconfig.cache
+C:\Users\ferna\Documents\GitHub\ns-nfe-core\ns-nfe-core\obj\Debug\net5.0\ns-nfe-core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ferna\Documents\GitHub\ns-nfe-core\ns-nfe-core\obj\Debug\net5.0\ns-nfe-core.AssemblyInfoInputs.cache
+C:\Users\ferna\Documents\GitHub\ns-nfe-core\ns-nfe-core\obj\Debug\net5.0\ns-nfe-core.AssemblyInfo.cs
+C:\Users\ferna\Documents\GitHub\ns-nfe-core\ns-nfe-core\obj\Debug\net5.0\ns-nfe-core.csproj.CoreCompileInputs.cache
+C:\Users\ferna\Documents\GitHub\ns-nfe-core\ns-nfe-core\obj\Debug\net5.0\ns-nfe-core.dll
+C:\Users\ferna\Documents\GitHub\ns-nfe-core\ns-nfe-core\obj\Debug\net5.0\ref\ns-nfe-core.dll
+C:\Users\ferna\Documents\GitHub\ns-nfe-core\ns-nfe-core\obj\Debug\net5.0\ns-nfe-core.pdb

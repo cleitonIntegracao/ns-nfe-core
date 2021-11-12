@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using ns_nfe_core.src.commons;
 using Newtonsoft.Json;
 using System.Xml.Serialization;
 using System.IO;
+using ns_nfe_core.src.emissao.xsd;
 
 namespace ns_nfe_core.src.emissao
 {
@@ -34,13 +32,13 @@ namespace ns_nfe_core.src.emissao
             string url = "https://nfe.ns.eti.br/nfe/issue";
 
             try { 
-                var responseAPI = JsonConvert.DeserializeObject<Response>(await nsAPI.postRequest(url, nfeToXML(requestBody), "xml")); 
+                var responseAPI = JsonConvert.DeserializeObject<Response>(await NSAPI.postRequest(url, nfeToXML(requestBody), "xml")); 
                 return responseAPI;
             }
 
             catch (Exception ex) 
             { 
-                util.gravarLinhaLog("[ERRO_EMISSAO]: " + ex.Message);
+                Util.gravarLinhaLog("[ERRO_EMISSAO]: " + ex.Message);
                 return null;
             }
             

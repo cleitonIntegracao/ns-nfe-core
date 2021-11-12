@@ -37,7 +37,7 @@ namespace ns_nfe_core.src.eventos
             {
                 string url = "https://nfe.ns.eti.br/nfe/get/event";
 
-                var responseAPI = JsonConvert.DeserializeObject<Response>(await nsAPI.postRequest(url, JsonConvert.SerializeObject(requestBody)));
+                var responseAPI = JsonConvert.DeserializeObject<Response>(await NSAPI.postRequest(url, JsonConvert.SerializeObject(requestBody)));
 
                 string idEvento = "";
 
@@ -54,22 +54,22 @@ namespace ns_nfe_core.src.eventos
 
                 if (responseAPI.json != null)
                 {
-                    util.salvarArquivo(caminhoSalvar, idEvento + responseAPI.retEvento.chNFe + requestBody.nSeqEvento, "-procEven.json", responseAPI.json);
+                    Util.salvarArquivo(caminhoSalvar, idEvento + responseAPI.retEvento.chNFe + requestBody.nSeqEvento, "-procEven.json", responseAPI.json);
                 }
 
                 if (responseAPI.pdf != null)
                 {
-                    util.salvarArquivo(caminhoSalvar, idEvento + responseAPI.retEvento.chNFe + requestBody.nSeqEvento, "-procEven.pdf", responseAPI.pdf);
+                    Util.salvarArquivo(caminhoSalvar, idEvento + responseAPI.retEvento.chNFe + requestBody.nSeqEvento, "-procEven.pdf", responseAPI.pdf);
                     
                     if (exibeNaTela)
                     {
-                        util.exibirPDF(caminhoSalvar, idEvento + responseAPI.retEvento.chNFe + requestBody.nSeqEvento, "-procEven.pdf"); 
+                        Util.exibirPDF(caminhoSalvar, idEvento + responseAPI.retEvento.chNFe + requestBody.nSeqEvento, "-procEven.pdf"); 
                     };
                 }
 
                 if (responseAPI.xml != null)
                 {
-                    util.salvarArquivo(caminhoSalvar, idEvento + responseAPI.retEvento.chNFe + requestBody.nSeqEvento, "-procEven.xml", responseAPI.xml);
+                    Util.salvarArquivo(caminhoSalvar, idEvento + responseAPI.retEvento.chNFe + requestBody.nSeqEvento, "-procEven.xml", responseAPI.xml);
                 }
 
                 return responseAPI;
@@ -77,7 +77,7 @@ namespace ns_nfe_core.src.eventos
 
             catch (Exception ex)
             {
-                util.gravarLinhaLog("[ERRO_DOWNLOAD_EVENTO]: " + ex.Message);
+                Util.gravarLinhaLog("[ERRO_DOWNLOAD_EVENTO]: " + ex.Message);
                 return null;
             }
         }
